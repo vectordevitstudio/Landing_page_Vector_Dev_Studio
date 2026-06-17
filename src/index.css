@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Базовые цвета */
+  --bg-primary: #04040a;
+  --bg-secondary: #080b14;
+  --bg-card: #0d111e;
+  --bg-card-hover: #121828;
+
+  /* Акценты */
+  --accent-violet: #6d56fa;
+  --accent-violet-light: #9b87ff;
+  --accent-cyan: #00d4ff;
+  --accent-cyan-glow: rgba(0, 212, 255, 0.15);
+  --accent-green: #39d98a;
+  --accent-amber: #f5a623;
+
+  /* Текст */
+  --text-primary: #f0f2ff;
+  --text-secondary: #8892b0;
+  --text-muted: #4a5370;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --border-accent: rgba(109, 86, 250, 0.4);
+
+  /* Градиенты */
+  --gradient-hero: linear-gradient(135deg, #6d56fa 0%, #00d4ff 100%);
+  --gradient-card: linear-gradient(
+    145deg,
+    rgba(109, 86, 250, 0.08) 0%,
+    rgba(0, 212, 255, 0.04) 100%
+  );
+  --gradient-glow-violet: radial-gradient(
+    circle at center,
+    rgba(109, 86, 250, 0.3) 0%,
+    transparent 70%
+  );
+  --gradient-glow-cyan: radial-gradient(
+    circle at center,
+    rgba(0, 212, 255, 0.2) 0%,
+    transparent 70%
+  );
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-violet);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-violet-light);
+}
+
+/* Доступность: видимый фокус */
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Выделение текста */
+::selection {
+  background: rgba(109, 86, 250, 0.35);
+  color: #fff;
+}
+
+/* prefers-reduced-motion: отключаем анимации */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Утилитарные классы дизайн-системы */
+.text-gradient {
+  background: linear-gradient(135deg, #9b87ff 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+}
+
+.section-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Скрыть скроллбар у горизонтальных лент (табы на мобиле) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Класс для «вырезанного» большого номера секции */
+.ghost-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
