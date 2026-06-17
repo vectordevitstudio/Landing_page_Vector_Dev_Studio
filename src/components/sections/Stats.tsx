@@ -9,34 +9,35 @@ export const Stats = () => {
   const { ref, inView } = useScrollAnimation(0.4);
 
   return (
-    <section className="relative border-y border-[var(--border-subtle)] bg-bg-secondary">
-      <div ref={ref} className="section-shell py-14">
-        <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:divide-x md:divide-white/[0.08]">
+    <section className="relative border-y border-[var(--border-strong)] bg-bg-secondary">
+      <div ref={ref} className="section-shell px-0">
+        <div className="grid grid-cols-2 divide-x divide-y divide-[var(--border-medium)] md:grid-cols-4 md:divide-y-0">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1, ease: ANIMATIONS.easeOut }}
-              className="px-4 text-center md:px-8"
+              className="group relative px-6 py-9 transition-colors hover:bg-bg-card md:px-8 md:py-12"
             >
-              <div className="text-4xl font-extrabold tracking-tight md:text-5xl">
-                <span className="text-gradient">
-                  {stat.prefix}
-                  {inView ? (
-                    <CountUp
-                      end={stat.value}
-                      decimals={stat.decimals ?? 0}
-                      duration={2}
-                      useEasing
-                    />
-                  ) : (
-                    0
-                  )}
-                  {stat.suffix}
-                </span>
+              <span className="mb-5 block font-mono text-[11px] text-ink-muted">
+                0{i + 1}
+              </span>
+              <div className="font-display text-[36px] font-semibold leading-none text-ink md:text-[46px]">
+                {stat.prefix}
+                {inView ? (
+                  <CountUp
+                    end={stat.value}
+                    decimals={stat.decimals ?? 0}
+                    duration={2}
+                    useEasing
+                  />
+                ) : (
+                  0
+                )}
+                <span className="text-accent-green">{stat.suffix}</span>
               </div>
-              <p className="mx-auto mt-2 max-w-[160px] text-sm text-text-secondary">
+              <p className="mt-4 max-w-[180px] text-sm leading-snug text-text-secondary">
                 {stat.label}
               </p>
             </motion.div>
@@ -45,14 +46,14 @@ export const Stats = () => {
       </div>
 
       {/* Бегущая строка технологий */}
-      <div className="border-t border-[var(--border-subtle)] bg-bg-primary/60 py-4">
-        <Marquee speed={40} gradient gradientColor="#04040A" gradientWidth={80} autoFill>
+      <div className="border-t border-[var(--border-medium)] bg-bg-primary py-4">
+        <Marquee speed={40} gradient gradientColor="#F2F0E9" gradientWidth={80} autoFill>
           {MARQUEE_TECH.map((t) => (
             <span
               key={t}
-              className="mx-6 font-mono text-sm text-text-secondary/70"
+              className="mx-7 font-mono text-xs uppercase tracking-wider text-text-secondary"
             >
-              <span className="mr-6 text-accent-violet/60">→</span>
+              <span className="mr-7 text-accent-green">+</span>
               {t}
             </span>
           ))}

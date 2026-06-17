@@ -9,8 +9,8 @@ interface Node {
   r: number;
 }
 
-const VIOLET = 'rgba(109, 86, 250, ';
-const CYAN = 'rgba(0, 212, 255, ';
+const INK = 'rgba(21, 20, 15, ';
+const GREEN = 'rgba(15, 165, 108, ';
 
 /**
  * Анимированная нейросеть: точки движутся, соединяются линиями,
@@ -46,7 +46,7 @@ export const NeuralBackground = () => {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.25,
         vy: (Math.random() - 0.5) * 0.25,
-        color: Math.random() > 0.45 ? VIOLET : CYAN,
+        color: Math.random() > 0.72 ? GREEN : INK,
         r: Math.random() * 1.4 + 0.8,
       }));
     };
@@ -95,7 +95,7 @@ export const NeuralBackground = () => {
           const dy = n.y - m.y;
           const d = Math.hypot(dx, dy);
           if (d < CONNECT_DIST) {
-            const alpha = (1 - d / CONNECT_DIST) * 0.16;
+            const alpha = (1 - d / CONNECT_DIST) * 0.12;
             const grad = ctx.createLinearGradient(n.x, n.y, m.x, m.y);
             grad.addColorStop(0, `${n.color}${alpha})`);
             grad.addColorStop(1, `${m.color}${alpha})`);
@@ -109,7 +109,7 @@ export const NeuralBackground = () => {
         }
 
         // точка
-        const baseAlpha = n.color === VIOLET ? 0.6 : 0.4;
+        const baseAlpha = n.color === GREEN ? 0.55 : 0.3;
         ctx.fillStyle = `${n.color}${baseAlpha + glow * 0.4})`;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r + glow * 1.6, 0, Math.PI * 2);
@@ -153,9 +153,9 @@ export const NeuralBackground = () => {
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <canvas ref={canvasRef} className="absolute inset-0" />
+      <canvas ref={canvasRef} className="absolute inset-0 opacity-90" />
       {/* Растворение фона вниз */}
-      <div className="absolute inset-0 [background:linear-gradient(to_bottom,transparent_55%,var(--bg-primary)_100%)]" />
+      <div className="absolute inset-0 [background:linear-gradient(to_bottom,transparent_45%,var(--bg-primary)_100%)]" />
     </div>
   );
 };

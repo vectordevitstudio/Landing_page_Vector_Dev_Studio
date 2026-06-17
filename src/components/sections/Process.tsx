@@ -11,7 +11,7 @@ export const Process = () => {
     <section id="process" className="relative bg-bg-secondary py-24 md:py-32">
       <div className="section-shell">
         <SectionHeader
-          number="04"
+          number="04 — Процесс"
           ghost="04"
           title="Как мы работаем"
           subtitle="От задачи до результата — прозрачный процесс"
@@ -19,9 +19,9 @@ export const Process = () => {
 
         <div ref={ref} className="relative">
           {/* Линия (desktop) */}
-          <div className="absolute left-0 right-0 top-7 hidden h-px bg-white/[0.08] md:block">
+          <div className="absolute left-0 right-0 top-7 hidden h-px bg-[var(--border-medium)] md:block">
             <motion.div
-              className="h-full bg-[linear-gradient(90deg,#6D56FA,#00D4FF)]"
+              className="h-full bg-ink"
               initial={{ scaleX: 0 }}
               animate={inView ? { scaleX: 1 } : {}}
               transition={{ duration: 1.4, ease: ANIMATIONS.easeOut }}
@@ -46,25 +46,25 @@ export const Process = () => {
                 >
                   {/* Вертикальная линия (mobile) */}
                   {i < PROCESS.length - 1 && (
-                    <span className="absolute left-7 top-14 h-[calc(100%+1rem)] w-px bg-white/[0.08] md:hidden" />
+                    <span className="absolute left-7 top-14 h-[calc(100%+1rem)] w-px bg-[var(--border-medium)] md:hidden" />
                   )}
 
-                  <div className="relative z-10 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#6D56FA,#00D4FF)] shadow-[0_0_24px_rgba(109,86,250,0.35)] transition-transform duration-300 group-hover:scale-110">
-                    <Icon className="h-6 w-6 text-white" />
+                  <div className="relative z-10 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-[6px] bg-ink text-[#F5F3EC] transition-colors duration-300 group-hover:bg-accent-green group-hover:text-ink">
+                    <Icon className="h-6 w-6" strokeWidth={1.6} />
                   </div>
 
-                  <div className="md:mt-5">
-                    <div className="mb-1 font-mono text-2xs text-accent-cyan">
-                      0{i + 1}
+                  <div className="md:mt-6">
+                    <div className="mb-2 font-mono text-xs font-medium text-ink-muted">
+                      [ 0{i + 1} ]
                     </div>
-                    <h3 className="text-base font-bold text-text-primary">
+                    <h3 className="text-[17px] font-semibold tracking-tight text-ink">
                       {step.title}
                     </h3>
                     <p className="text-sm text-text-secondary">{step.subtitle}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-text-secondary/80">
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">
                       {step.description}
                     </p>
-                    <span className="mt-3 inline-flex rounded-full border border-[var(--border-subtle)] px-2.5 py-0.5 text-2xs text-text-secondary">
+                    <span className="mt-3 inline-flex rounded-[4px] border border-[var(--border-medium)] px-2.5 py-1 font-mono text-2xs text-ink-soft">
                       {step.duration}
                     </span>
                   </div>

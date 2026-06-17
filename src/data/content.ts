@@ -10,6 +10,10 @@ import {
   Code2,
   Rocket,
   HeartHandshake,
+  Database,
+  GraduationCap,
+  FileText,
+  Briefcase,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -43,7 +47,7 @@ export const NAV_LINKS = [
 /* ------------------------------------------------------------------ */
 
 export const HERO = {
-  badge: '⚡ Автоматизация бизнеса с помощью AI',
+  badge: 'Автоматизация бизнеса с помощью AI',
   lineOne: 'Мы строим',
   rotatingWords: [
     'умных агентов',
@@ -175,7 +179,7 @@ export const SERVICES: Service[] = [
 export interface Product {
   id: string;
   tab: string;
-  emoji: string;
+  icon: LucideIcon;
   name: string;
   badges: string[];
   pitch: string;
@@ -188,7 +192,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'knowledgecore',
     tab: 'KnowledgeCore',
-    emoji: '🧠',
+    icon: Database,
     name: 'KnowledgeCore',
     badges: ['Enterprise-ready'],
     pitch:
@@ -223,7 +227,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'learnbot',
     tab: 'LearnBot',
-    emoji: '🎓',
+    icon: GraduationCap,
     name: 'LearnBot',
     badges: ['EdTech'],
     pitch:
@@ -255,7 +259,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'meetscribe',
     tab: 'MeetScribe',
-    emoji: '📝',
+    icon: FileText,
     name: 'MeetScribe',
     badges: ['Productivity'],
     pitch:
@@ -287,7 +291,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'salesflow',
     tab: 'SalesFlow AI',
-    emoji: '💼',
+    icon: Briefcase,
     name: 'SalesFlow AI',
     badges: ['Sales Automation', 'NEW'],
     pitch:
@@ -321,7 +325,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'raize',
     tab: 'Raize.ai',
-    emoji: '🚀',
+    icon: Rocket,
     name: 'Raize.ai',
     badges: ['Platform', 'B2B/B2C'],
     pitch:
@@ -389,7 +393,7 @@ export const CASES: CaseItem[] = [
       'AI-агент для сети магазинов манекенов: сбор лидов из 5 источников, автозаполнение CRM, авторассылка по незакрытым клиентам.',
     results: ['−80% времени на ручной ввод', '0 потерянных заявок', 'Интеграция за 3 недели'],
     tags: ['n8n', 'Google Sheets', 'WhatsApp API'],
-    gradient: 'linear-gradient(135deg, #6D56FA33, #00D4FF1f)',
+    gradient: 'linear-gradient(135deg, rgba(74,64,201,0.14), rgba(15,165,108,0.06))',
   },
   {
     category: 'Веб/Мобайл',
@@ -400,7 +404,7 @@ export const CASES: CaseItem[] = [
       'Полноценный B2B-маркетплейс для заказа AI-сервисов: эскроу, чат, система заявок, роли.',
     results: ['Django + React', 'Система эскроу-платежей', 'Real-time чат через WebSockets'],
     tags: ['Django', 'React', 'PostgreSQL', 'Stripe'],
-    gradient: 'linear-gradient(135deg, #00D4FF2e, #39D98A1f)',
+    gradient: 'linear-gradient(135deg, rgba(28,126,146,0.14), rgba(203,242,74,0.1))',
   },
   {
     category: 'Веб/Мобайл',
@@ -411,7 +415,7 @@ export const CASES: CaseItem[] = [
       'Русскоязычный аналог Rezi.ai с AI-анализом, адаптацией под вакансии и интеграцией HH.ru.',
     results: ['30+ AI-функций в MVP', 'ATS-аудит по 30 критериям', '4 формата экспорта, mock interview'],
     tags: ['React', 'FastAPI', 'OpenAI', 'Playwright'],
-    gradient: 'linear-gradient(135deg, #39D98A2e, #00D4FF1f)',
+    gradient: 'linear-gradient(135deg, rgba(15,165,108,0.14), rgba(28,126,146,0.06))',
   },
   {
     category: 'Веб/Мобайл',
@@ -422,7 +426,7 @@ export const CASES: CaseItem[] = [
       'Система для сети барбершопов: чек-листы, заказы расходников, тикеты, AI-бот знаний.',
     results: ['Роли: Администратор / Менеджер / Директор', 'Авто-напоминания по расписанию', 'RAG-чат на базе знаний'],
     tags: ['Node.js', 'React', 'PostgreSQL', 'Prisma'],
-    gradient: 'linear-gradient(135deg, #F5A6232e, #6D56FA1f)',
+    gradient: 'linear-gradient(135deg, rgba(178,107,42,0.14), rgba(74,64,201,0.06))',
   },
   {
     category: 'Игры',
@@ -433,7 +437,7 @@ export const CASES: CaseItem[] = [
       'Атмосферная puzzle-adventure для iOS/Android на Godot. AI-генерация графики и музыки.',
     results: ['Godot Engine 4.2', 'AI-контент: Midjourney + Suno', 'Система диалогов и инвентаря'],
     tags: ['Godot', 'GDScript', 'AI Art', 'Mobile'],
-    gradient: 'linear-gradient(135deg, #6D56FA2e, #F5A6231f)',
+    gradient: 'linear-gradient(135deg, rgba(74,64,201,0.14), rgba(178,107,42,0.08))',
   },
   {
     category: 'AI-агенты',
@@ -444,7 +448,7 @@ export const CASES: CaseItem[] = [
       'AI-система скрининга кандидатов с HH.ru и Avito, автоматические интервью, передача HR.',
     results: ['Обработка 500+ откликов/день', 'Автоскрининг по 15 критериям', 'Интеграция с ATS'],
     tags: ['Python', 'LangChain', 'Telegram', 'HH API'],
-    gradient: 'linear-gradient(135deg, #00D4FF2e, #6D56FA1f)',
+    gradient: 'linear-gradient(135deg, rgba(28,126,146,0.14), rgba(74,64,201,0.06))',
   },
 ];
 

@@ -17,7 +17,7 @@ export const Cases = () => {
     <section id="cases" className="relative py-24 md:py-32">
       <div className="section-shell">
         <SectionHeader
-          number="03"
+          number="03 — Кейсы"
           ghost="03"
           title="Реализованные проекты"
           subtitle="Результаты, которые говорят сами за себя"
@@ -29,10 +29,10 @@ export const Cases = () => {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`rounded-full border px-4 py-2 text-sm transition-colors ${
+              className={`rounded-[6px] border px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors ${
                 filter === f
-                  ? 'border-accent-violet bg-[rgba(109,86,250,0.15)] text-accent-violet-light'
-                  : 'border-[var(--border-subtle)] text-text-secondary hover:border-[var(--border-medium)] hover:text-text-primary'
+                  ? 'border-ink bg-ink text-[#F5F3EC]'
+                  : 'border-[var(--border-medium)] text-text-secondary hover:border-ink hover:text-ink'
               }`}
             >
               {f}
@@ -41,30 +41,37 @@ export const Cases = () => {
         </div>
 
         {/* Сетка кейсов */}
-        <motion.div layout className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div layout className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
-            {visible.map((c) => (
+            {visible.map((c, i) => (
               <motion.article
                 key={c.client + c.title}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.4, ease: ANIMATIONS.easeOut }}
-                whileHover={{ y: -6 }}
-                className="group flex cursor-pointer flex-col overflow-hidden rounded-[20px] border border-[var(--border-subtle)] bg-bg-card"
+                whileHover={{ y: -5 }}
+                className="group relative flex cursor-pointer flex-col overflow-hidden rounded-[8px] border border-[var(--border-medium)] bg-bg-card transition-colors duration-300 hover:border-[var(--border-strong)]"
               >
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-0 z-10 h-[2px] w-0 bg-accent-lime transition-all duration-300 group-hover:w-full"
+                />
                 {/* Превью */}
                 <div
-                  className="relative flex h-44 items-center justify-center overflow-hidden"
+                  className="relative flex h-44 items-center justify-center overflow-hidden border-b border-[var(--border-medium)]"
                   style={{ background: c.gradient }}
                 >
-                  <span className="font-mono text-2xl font-bold text-white/80">
+                  <span className="font-display text-[24px] font-medium tracking-tight text-ink/75">
                     {c.client}
                   </span>
-                  <ArrowUpRight className="absolute right-4 top-4 h-5 w-5 text-white/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span className="absolute right-4 top-4 font-mono text-xs text-ink/40">
+                    /0{i + 1}
+                  </span>
+                  <ArrowUpRight className="absolute bottom-4 right-4 h-5 w-5 text-ink/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   <div className="absolute left-4 top-4">
-                    <span className="rounded-full bg-black/40 px-3 py-1 text-2xs font-medium text-white backdrop-blur">
+                    <span className="rounded-[4px] border border-[var(--border-medium)] bg-bg-card/80 px-2 py-1 font-mono text-2xs uppercase tracking-wider text-ink-soft backdrop-blur">
                       {c.badge}
                     </span>
                   </div>
@@ -72,7 +79,7 @@ export const Cases = () => {
 
                 {/* Тело */}
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 text-lg font-bold text-text-primary">
+                  <h3 className="mb-2 text-[19px] font-semibold tracking-tight text-ink">
                     {c.title}
                   </h3>
                   <p className="mb-4 text-sm leading-relaxed text-text-secondary">
@@ -80,17 +87,17 @@ export const Cases = () => {
                   </p>
                   <ul className="mb-5 space-y-1.5">
                     {c.results.map((r) => (
-                      <li key={r} className="flex items-center gap-2 text-sm text-text-primary/90">
-                        <span className="h-1 w-1 rounded-full bg-accent-green" />
+                      <li key={r} className="flex items-center gap-2.5 text-sm text-text-primary">
+                        <span className="h-1.5 w-1.5 shrink-0 bg-accent-green" />
                         {r}
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-auto flex flex-wrap gap-2">
+                  <div className="mt-auto flex flex-wrap gap-1.5">
                     {c.tags.map((t) => (
                       <span
                         key={t}
-                        className="rounded-md bg-white/[0.05] px-2 py-1 font-mono text-2xs text-text-secondary"
+                        className="rounded-[4px] border border-[var(--border-medium)] px-2 py-1 font-mono text-2xs text-ink-muted"
                       >
                         {t}
                       </span>

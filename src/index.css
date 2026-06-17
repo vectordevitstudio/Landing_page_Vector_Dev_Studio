@@ -3,45 +3,51 @@
 @tailwind utilities;
 
 :root {
-  /* Базовые цвета */
-  --bg-primary: #04040a;
-  --bg-secondary: #080b14;
-  --bg-card: #0d111e;
-  --bg-card-hover: #121828;
+  /* Базовые поверхности — тёплая бумага */
+  --bg-primary: #f2f0e9;
+  --bg-secondary: #eae7dd;
+  --bg-card: #fbfaf6;
+  --bg-card-hover: #ffffff;
 
-  /* Акценты */
-  --accent-violet: #6d56fa;
-  --accent-violet-light: #9b87ff;
-  --accent-cyan: #00d4ff;
-  --accent-cyan-glow: rgba(0, 212, 255, 0.15);
-  --accent-green: #39d98a;
-  --accent-amber: #f5a623;
+  /* Чернила (текст / основные элементы) */
+  --ink: #15140f;
+  --ink-soft: #5c594e;
+  --ink-muted: #94907f;
+
+  /* Акценты — артистичная зелёная линия бренда */
+  --accent-lime: #cbf24a; /* электрический хайлайт, текст — чернила */
+  --accent-green: #0fa56c; /* изумруд для иконок и ссылок */
+
+  /* Приглушённые «земляные» оттенки категорий */
+  --accent-violet: #4a40c9;
+  --accent-violet-light: #6a60e0;
+  --accent-cyan: #1c7e92;
+  --accent-amber: #b26b2a;
 
   /* Текст */
-  --text-primary: #f0f2ff;
-  --text-secondary: #8892b0;
-  --text-muted: #4a5370;
+  --text-primary: #15140f;
+  --text-secondary: #5c594e;
+  --text-muted: #94907f;
 
-  /* Borders */
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-medium: rgba(255, 255, 255, 0.12);
-  --border-accent: rgba(109, 86, 250, 0.4);
+  /* Линии / границы */
+  --border-subtle: rgba(21, 20, 15, 0.1);
+  --border-medium: rgba(21, 20, 15, 0.16);
+  --border-strong: rgba(21, 20, 15, 0.85);
+  --border-accent: rgba(15, 165, 108, 0.45);
 
-  /* Градиенты */
-  --gradient-hero: linear-gradient(135deg, #6d56fa 0%, #00d4ff 100%);
-  --gradient-card: linear-gradient(
-    145deg,
-    rgba(109, 86, 250, 0.08) 0%,
-    rgba(0, 212, 255, 0.04) 100%
-  );
-  --gradient-glow-violet: radial-gradient(
+  /* Радиусы — острее, технологичнее */
+  --r-card: 8px;
+  --r-sm: 4px;
+
+  /* Атмосфера (мягкая, без неона) */
+  --gradient-glow-lime: radial-gradient(
     circle at center,
-    rgba(109, 86, 250, 0.3) 0%,
+    rgba(203, 242, 74, 0.5) 0%,
     transparent 70%
   );
-  --gradient-glow-cyan: radial-gradient(
+  --gradient-glow-green: radial-gradient(
     circle at center,
-    rgba(0, 212, 255, 0.2) 0%,
+    rgba(15, 165, 108, 0.28) 0%,
     transparent 70%
   );
 }
@@ -58,7 +64,7 @@ body {
   margin: 0;
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -66,30 +72,28 @@ body {
 
 /* Скроллбар */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: var(--bg-secondary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-violet);
-  border-radius: 3px;
+  background: var(--ink);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-violet-light);
+  background: var(--accent-green);
 }
 
 /* Доступность: видимый фокус */
 :focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid var(--accent-green);
   outline-offset: 3px;
-  border-radius: 6px;
 }
 
 /* Выделение текста */
 ::selection {
-  background: rgba(109, 86, 250, 0.35);
-  color: #fff;
+  background: var(--accent-lime);
+  color: var(--ink);
 }
 
 /* prefers-reduced-motion: отключаем анимации */
@@ -104,20 +108,47 @@ body {
   }
 }
 
-/* Утилитарные классы дизайн-системы */
-.text-gradient {
-  background: linear-gradient(135deg, #9b87ff 0%, #00d4ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+/* ---------------------------------------------------------------- */
+/* Утилитарные классы дизайн-системы                                 */
+/* ---------------------------------------------------------------- */
+
+/* Шрифты */
+.font-display {
+  font-family: Unbounded, Inter, system-ui, sans-serif;
+  letter-spacing: -0.02em;
 }
 
+/* «Бровка» — мелкая моно-метка */
+.eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Акцентный текст: изумруд */
+.text-gradient {
+  color: var(--accent-green);
+}
+
+/* Маркер-хайлайт за словом — фирменный лаймовый штрих */
+.ink-highlight {
+  background-image: linear-gradient(
+    transparent 58%,
+    var(--accent-lime) 58%,
+    var(--accent-lime) 96%,
+    transparent 96%
+  );
+  padding-inline: 0.08em;
+}
+
+/* Светлая «стеклянная» поверхность */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
+  background: rgba(251, 250, 246, 0.72);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid var(--border-medium);
 }
 
 .section-shell {
@@ -127,7 +158,7 @@ body {
   padding-right: 24px;
 }
 
-/* Скрыть скроллбар у горизонтальных лент (табы на мобиле) */
+/* Скрыть скроллбар у горизонтальных лент */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -136,12 +167,58 @@ body {
   scrollbar-width: none;
 }
 
-/* Класс для «вырезанного» большого номера секции */
+/* «Вырезанный» большой номер секции */
 .ghost-number {
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.03);
+  font-family: Unbounded, sans-serif;
+  font-weight: 800;
+  color: rgba(21, 20, 15, 0.045);
   line-height: 1;
+  letter-spacing: -0.04em;
   pointer-events: none;
   user-select: none;
+}
+
+/* Технический «миллиметровый» фон */
+.grid-paper {
+  background-image: linear-gradient(
+      to right,
+      var(--border-subtle) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Крестик-метка (регистрационная) в углах карточек.
+   В @layer components, чтобы утилита `absolute` из utilities-слоя
+   могла переопределить position при позиционировании в углах. */
+@layer components {
+  .plus-mark {
+    position: relative;
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    flex: none;
+  }
+}
+.plus-mark::before,
+.plus-mark::after {
+  content: '';
+  position: absolute;
+  background: var(--ink);
+  opacity: 0.45;
+}
+.plus-mark::before {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+.plus-mark::after {
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  transform: translateY(-50%);
 }

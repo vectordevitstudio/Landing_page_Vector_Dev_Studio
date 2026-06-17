@@ -10,22 +10,25 @@ interface GlowCardProps {
 
 export const GlowCard = ({ children, className, interactive = true }: GlowCardProps) => (
   <motion.div
-    whileHover={interactive ? { y: -6, scale: 1.01 } : undefined}
-    transition={{ type: 'spring', stiffness: 220, damping: 22 }}
+    whileHover={interactive ? { y: -4 } : undefined}
+    transition={{ type: 'spring', stiffness: 260, damping: 24 }}
     className={cn(
-      'group relative overflow-hidden rounded-[20px] border border-[var(--border-subtle)]',
-      'bg-[var(--bg-card)] p-8 transition-[border-color,box-shadow] duration-300',
-      interactive &&
-        'hover:border-accent-violet hover:shadow-[0_0_40px_rgba(109,86,250,0.15)]',
+      'group relative rounded-[8px] border border-[var(--border-medium)] bg-[var(--bg-card)] p-7',
+      'transition-colors duration-300',
+      interactive && 'hover:border-[var(--border-strong)] hover:bg-[var(--bg-card-hover)]',
       className
     )}
   >
-    {/* Свечение-подложка */}
-    <div
+    {/* Технический акцент в углу */}
+    <span
       aria-hidden
-      className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      style={{ background: 'var(--gradient-card)' }}
+      className="plus-mark absolute right-3.5 top-3.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
     />
-    <div className="relative z-10">{children}</div>
+    {/* Лаймовая линия сверху при наведении */}
+    <span
+      aria-hidden
+      className="absolute left-0 top-0 h-[2px] w-0 bg-accent-lime transition-all duration-300 group-hover:w-full"
+    />
+    {children}
   </motion.div>
 );

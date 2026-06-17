@@ -20,15 +20,16 @@ export const Testimonials = () => {
     <section className="relative bg-bg-secondary py-24 md:py-32">
       <div className="section-shell">
         <SectionHeader
-          number="06"
+          number="06 — Отзывы"
           ghost="06"
           title="Что говорят клиенты"
           subtitle="Несколько историй о результатах после внедрения"
         />
 
-        <div className="relative mx-auto max-w-3xl">
+        <div className="relative mx-auto max-w-3xl rounded-[8px] border border-[var(--border-medium)] bg-bg-card p-8 md:p-12">
+          <span className="plus-mark absolute right-5 top-5" aria-hidden />
           <Quote
-            className="absolute -left-2 -top-6 h-16 w-16 text-accent-violet/20"
+            className="mb-6 h-9 w-9 fill-accent-lime text-accent-lime"
             aria-hidden
           />
 
@@ -43,11 +44,11 @@ export const Testimonials = () => {
                 transition={{ duration: 0.4, ease: ANIMATIONS.easeOut }}
                 className="relative"
               >
-                <p className="text-lg leading-relaxed text-text-primary md:text-xl">
+                <p className="text-[21px] font-medium leading-[1.45] tracking-tight text-ink md:text-[27px]">
                   «{t.quote}»
                 </p>
-                <footer className="mt-6 flex items-center gap-3">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,#6D56FA,#00D4FF)] text-sm font-bold text-white">
+                <footer className="mt-7 flex items-center gap-3">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-[6px] bg-ink text-sm font-semibold text-[#F5F3EC]">
                     {t.initials}
                   </span>
                   <span>
@@ -72,8 +73,8 @@ export const Testimonials = () => {
                     setDir(i > index ? 1 : -1);
                     setIndex(i);
                   }}
-                  className={`h-2 rounded-full transition-all ${
-                    i === index ? 'w-8 bg-accent-violet' : 'w-2 bg-white/15'
+                  className={`h-[3px] transition-all ${
+                    i === index ? 'w-9 bg-ink' : 'w-4 bg-ink/20'
                   }`}
                 />
               ))}
@@ -82,14 +83,14 @@ export const Testimonials = () => {
               <button
                 onClick={() => paginate(-1)}
                 aria-label="Предыдущий отзыв"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border-subtle)] text-text-secondary transition-colors hover:border-accent-violet hover:text-text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-[6px] border border-[var(--border-medium)] text-text-secondary transition-colors hover:border-ink hover:bg-ink hover:text-[#F5F3EC]"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={() => paginate(1)}
                 aria-label="Следующий отзыв"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border-subtle)] text-text-secondary transition-colors hover:border-accent-violet hover:text-text-primary"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-[6px] border border-[var(--border-medium)] text-text-secondary transition-colors hover:border-ink hover:bg-ink hover:text-[#F5F3EC]"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>

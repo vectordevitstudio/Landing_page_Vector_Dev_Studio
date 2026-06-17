@@ -18,7 +18,7 @@ export const TechStack = () => {
     <section className="relative py-24 md:py-32">
       <div className="section-shell">
         <SectionHeader
-          number="05"
+          number="05 — Технологии"
           ghost="05"
           title="Технологии, на которых строим"
           subtitle="Современный стек для AI, бэкенда, фронтенда, игр и инфраструктуры"
@@ -29,9 +29,7 @@ export const TechStack = () => {
             <div key={group.label}>
               <div className="mb-4 flex items-center gap-2.5">
                 <span className={`h-2 w-2 rounded-full ${DOT[group.color]}`} />
-                <h3 className="font-mono text-sm uppercase tracking-wider text-text-secondary">
-                  {group.label}
-                </h3>
+                <h3 className="eyebrow text-ink-soft">{group.label}</h3>
               </div>
               <div className="flex flex-wrap gap-3">
                 {group.items.map((item, i) => (
@@ -44,8 +42,8 @@ export const TechStack = () => {
                       delay: gi * 0.05 + i * 0.025,
                       ease: ANIMATIONS.easeOut,
                     }}
-                    whileHover={{ scale: 1.06 }}
-                    className="flex items-center gap-2 rounded-xl border border-[var(--border-subtle)] bg-white/[0.04] px-4 py-2.5 text-sm text-text-primary transition-colors hover:border-[var(--border-medium)] hover:bg-white/[0.07]"
+                    whileHover={{ y: -3 }}
+                    className="flex items-center gap-2 rounded-[4px] border border-[var(--border-medium)] bg-bg-card px-3.5 py-2 font-mono text-[13px] text-text-primary transition-colors hover:border-ink hover:bg-bg-card-hover"
                   >
                     <span className={`h-1.5 w-1.5 rounded-full ${DOT[group.color]}`} />
                     {item}
