@@ -8,13 +8,32 @@ import { ANIMATIONS } from '../../lib/animations';
 export const CTA = () => {
   const { ref, inView } = useScrollAnimation(0.3);
   const [email, setEmail] = useState('');
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    // TODO: подключить отправку заявки на бэкенд / в Telegram
-    setSent(true);
+    if (!email || status === 'sending') return;
+
+    setStatus('sending');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: 'Новая заявка с лендинга Vector Dev Studio',
+          from_name: 'Vector Dev Studio',
+          email,
+        }),
+      });
+      const data = await res.json();
+      setStatus(data.success ? 'success' : 'error');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -50,7 +69,7 @@ export const CTA = () => {
               Расскажите о задаче — мы предложим решение и оценим проект за 24 часа.
             </p>
 
-            {sent ? (
+            {status === 'success' ? (
               <div className="mx-auto mt-10 inline-flex items-center gap-3 rounded-[6px] border border-[var(--border-accent)] bg-[rgba(15,165,108,0.1)] px-6 py-4 text-accent-green">
                 <CheckCircle2 className="h-5 w-5" />
                 <span className="font-medium">
@@ -70,19 +89,34 @@ export const CTA = () => {
                     id="cta-email"
                     type="email"
                     required
+                    disabled={status === 'sending'}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Ваш email"
-                    className="flex-1 rounded-[6px] border border-[var(--border-medium)] bg-bg-primary px-5 py-3.5 text-ink outline-none placeholder:text-ink-muted focus-visible:border-accent-green"
+                    className="flex-1 rounded-[6px] border border-[var(--border-medium)] bg-bg-primary px-5 py-3.5 text-ink outline-none placeholder:text-ink-muted focus-visible:border-accent-green disabled:opacity-60"
                   />
                   <button
                     type="submit"
-                    className="group inline-flex items-center justify-center gap-2 rounded-[6px] bg-ink px-7 py-3.5 font-medium text-[#F5F3EC] transition-colors hover:bg-accent-green hover:text-ink"
+                    disabled={status === 'sending'}
+                    className="group inline-flex items-center justify-center gap-2 rounded-[6px] bg-ink px-7 py-3.5 font-medium text-[#F5F3EC] transition-colors hover:bg-accent-green hover:text-ink disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-ink disabled:hover:text-[#F5F3EC]"
                   >
-                    Получить консультацию
+                    {status === 'sending' ? 'Отправляем…' : 'Получить консультацию'}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </form>
+
+                {status === 'error' && (
+                  <p className="mt-4 text-sm text-[#cc4b37]">
+                    Не удалось отправить заявку. Попробуйте ещё раз или{' '}
+                    <a
+                      href={`https://t.me/${BRAND.telegram.replace('@', '')}`}
+                      className="underline underline-offset-2 hover:opacity-80"
+                    >
+                      напишите в Telegram
+                    </a>
+                    .
+                  </p>
+                )}
 
                 <div className="mt-6 flex items-center justify-center">
                   <a
