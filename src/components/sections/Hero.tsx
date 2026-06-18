@@ -3,8 +3,8 @@ import Typewriter from 'typewriter-effect';
 import {
   ArrowRight,
   ArrowDown,
-  CheckCircle2,
-  BarChart3,
+  Zap,
+  Repeat,
   Sparkles,
 } from 'lucide-react';
 import { NeuralBackground } from '../ui/NeuralBackground';
@@ -96,17 +96,18 @@ export const Hero = () => (
     >
       <div className="glass relative rounded-[8px] p-4">
         <span className="plus-mark absolute right-2.5 top-2.5" aria-hidden />
-        <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted">
-          status · live
+        <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">
+          {HERO.floatingCardLeft.eyebrow}
         </div>
-        <div className="flex items-center gap-2 text-accent-green">
-          <CheckCircle2 className="h-4 w-4" />
-          <span className="text-sm font-semibold text-ink">
-            {HERO.floatingCardLeft.title}
+        <div className="mt-2.5 flex items-baseline gap-1.5 font-display text-[26px] font-semibold leading-none text-ink">
+          {HERO.floatingCardLeft.value}
+          <span className="text-sm font-medium text-accent-green">
+            {HERO.floatingCardLeft.unit}
           </span>
         </div>
-        <p className="mt-2 text-xs leading-relaxed text-text-secondary">
-          {HERO.floatingCardLeft.body}
+        <p className="mt-3 flex items-start gap-1.5 text-xs leading-relaxed text-text-secondary">
+          <Zap className="mt-[2px] h-3.5 w-3.5 shrink-0 text-accent-green" strokeWidth={1.8} />
+          <span>{HERO.floatingCardLeft.caption}</span>
         </p>
       </div>
     </motion.div>
@@ -119,23 +120,18 @@ export const Hero = () => (
     >
       <div className="glass relative rounded-[8px] p-4">
         <span className="plus-mark absolute right-2.5 top-2.5" aria-hidden />
-        <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted">
-          metric · 24h
+        <div className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">
+          {HERO.floatingCardRight.eyebrow}
         </div>
-        <div className="flex items-center gap-2 text-ink">
-          <BarChart3 className="h-4 w-4 text-accent-green" />
-          <span className="text-sm font-semibold text-ink">
-            {HERO.floatingCardRight.title}
+        <div className="mt-2.5 flex items-baseline gap-1.5 font-display text-[26px] font-semibold leading-none text-ink">
+          {HERO.floatingCardRight.value}
+          <span className="text-sm font-medium text-accent-green">
+            {HERO.floatingCardRight.unit}
           </span>
         </div>
-        <div className="mt-3 h-1.5 w-full overflow-hidden rounded-[2px] bg-ink/10">
-          <div
-            className="h-full rounded-[2px] bg-[linear-gradient(90deg,#0FA56C,#CBF24A)]"
-            style={{ width: `${HERO.floatingCardRight.percent}%` }}
-          />
-        </div>
-        <p className="mt-2 text-xs text-text-secondary">
-          {HERO.floatingCardRight.percent}% · {HERO.floatingCardRight.body}
+        <p className="mt-3 flex items-start gap-1.5 text-xs leading-relaxed text-text-secondary">
+          <Repeat className="mt-[2px] h-3.5 w-3.5 shrink-0 text-accent-green" strokeWidth={1.8} />
+          <span>{HERO.floatingCardRight.caption}</span>
         </p>
       </div>
     </motion.div>

@@ -60,13 +60,16 @@ export const HERO = {
   primaryCta: 'Обсудить проект',
   secondaryCta: 'Посмотреть кейсы',
   floatingCardLeft: {
-    title: 'Задача выполнена',
-    body: 'AI-агент обработал 1 847 заявок за последние 24 часа',
+    eyebrow: 'темп · mvp',
+    value: '2–8',
+    unit: 'недель',
+    caption: 'от идеи до рабочего продукта',
   },
   floatingCardRight: {
-    title: 'Экономия времени',
-    percent: 94,
-    body: 'Автоматизация рутинных задач',
+    eyebrow: 'формат · демо',
+    value: '1–2',
+    unit: 'недели',
+    caption: 'прогресс на каждом спринте',
   },
 };
 
