@@ -1,6 +1,13 @@
 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
   <rect width="32" height="32" rx="7" fill="#15140F"/>
-  <ellipse cx="16" cy="16" rx="11" ry="5" fill="none" stroke="#F2F0E9" stroke-width="1.6" transform="rotate(-30 16 16)"/>
-  <ellipse cx="16" cy="16" rx="11" ry="5" fill="none" stroke="#CBF24A" stroke-width="1.6" transform="rotate(30 16 16)"/>
-  <circle cx="16" cy="16" r="3" fill="#CBF24A"/>
+  <rect x="3.5" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="10" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="16.5" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="23" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="16.5" y="10" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="23" y="10" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="10" y="16.5" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="23" y="16.5" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="3.5" y="23" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
+  <rect x="23" y="23" width="5.5" height="5.5" rx="1" fill="#CBF24A"/>
 </svg>
