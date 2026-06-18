@@ -18,6 +18,11 @@ export const useSmoothScroll = () => {
       smoothWheel: true,
     });
 
+    // dev-помощник: даёт прокручивать страницу из консоли/превью
+    if (import.meta.env.DEV) {
+      (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+    }
+
     let rafId = 0;
     const raf = (time: number) => {
       lenis.raf(time);

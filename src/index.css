@@ -108,6 +108,21 @@ body {
   }
 }
 
+/* Кастомный курсор: гасим нативный на устройствах с точным указателем,
+   кроме полей ввода — там нужна каретка. */
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select,
+  html.has-custom-cursor [contenteditable='true'] {
+    cursor: auto !important;
+  }
+}
+
 /* ---------------------------------------------------------------- */
 /* Утилитарные классы дизайн-системы                                 */
 /* ---------------------------------------------------------------- */

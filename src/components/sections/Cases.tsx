@@ -52,35 +52,23 @@ export const Cases = () => {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.4, ease: ANIMATIONS.easeOut }}
                 whileHover={{ y: -5 }}
-                className="group relative flex cursor-pointer flex-col overflow-hidden rounded-[8px] border border-[var(--border-medium)] bg-bg-card transition-colors duration-300 hover:border-[var(--border-strong)]"
+                className="group relative flex flex-col overflow-hidden rounded-[8px] border border-[var(--border-medium)] bg-bg-card transition-colors duration-300 hover:border-[var(--border-strong)]"
               >
                 <span
                   aria-hidden
                   className="absolute left-0 top-0 z-10 h-[2px] w-0 bg-accent-lime transition-all duration-300 group-hover:w-full"
                 />
-                {/* Превью */}
-                <div
-                  className="relative flex h-44 items-center justify-center overflow-hidden border-b border-[var(--border-medium)]"
-                  style={{ background: c.gradient }}
-                >
-                  <span className="font-display text-[24px] font-medium tracking-tight text-ink/75">
-                    {c.client}
-                  </span>
-                  <span className="absolute right-4 top-4 font-mono text-xs text-ink/40">
-                    /0{i + 1}
-                  </span>
-                  <ArrowUpRight className="absolute bottom-4 right-4 h-5 w-5 text-ink/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  <div className="absolute left-4 top-4">
-                    <span className="rounded-[4px] border border-[var(--border-medium)] bg-bg-card/80 px-2 py-1 font-mono text-2xs uppercase tracking-wider text-ink-soft backdrop-blur">
-                      {c.badge}
-                    </span>
-                  </div>
-                </div>
-
                 {/* Тело */}
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 text-[19px] font-semibold tracking-tight text-ink">
-                    {c.title}
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <span className="rounded-[4px] border border-[var(--border-medium)] bg-bg-secondary px-2 py-1 font-mono text-2xs uppercase tracking-wider text-ink-soft">
+                      {c.badge}
+                    </span>
+                    <span className="font-mono text-xs text-ink-muted">/0{i + 1}</span>
+                  </div>
+                  <h3 className="mb-2 flex items-start justify-between gap-3 text-[19px] font-semibold tracking-tight text-ink">
+                    <span>{c.title}</span>
+                    <ArrowUpRight className="mt-0.5 h-5 w-5 shrink-0 text-ink-muted transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </h3>
                   <p className="mb-4 text-sm leading-relaxed text-text-secondary">
                     {c.description}
