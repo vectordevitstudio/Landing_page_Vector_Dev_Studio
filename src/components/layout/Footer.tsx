@@ -1,4 +1,4 @@
-import { Send, Github } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { BRAND, FOOTER } from '../../data/content';
 
@@ -21,13 +21,6 @@ export const Footer = () => (
               className="inline-flex h-10 w-10 items-center justify-center rounded-[6px] border border-[var(--border-medium)] text-text-secondary transition-colors hover:border-ink hover:bg-ink hover:text-[#F5F3EC]"
             >
               <Send className="h-4 w-4" />
-            </a>
-            <a
-              href="#"
-              aria-label="GitHub"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-[6px] border border-[var(--border-medium)] text-text-secondary transition-colors hover:border-ink hover:bg-ink hover:text-[#F5F3EC]"
-            >
-              <Github className="h-4 w-4" />
             </a>
           </div>
         </div>
