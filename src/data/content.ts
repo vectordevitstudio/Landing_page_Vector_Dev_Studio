@@ -26,7 +26,7 @@ export const BRAND = {
   logoAccent: 'Dev Studio',
   // Контакты — ЗАГЛУШКИ, заменить на реальные перед публикацией
   telegram: '@vectordevstudio',
-  email: 'hello@vectordev.studio',
+  email: 'info@vectordev.ru',
   phone: '+7 XXX XXX XX XX',
 };
 
