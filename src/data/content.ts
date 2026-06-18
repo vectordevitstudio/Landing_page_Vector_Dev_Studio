@@ -344,11 +344,7 @@ export const PRODUCTS: Product[] = [
 /* CASES                                                               */
 /* ------------------------------------------------------------------ */
 
-export type CaseCategory =
-  | 'AI-агенты'
-  | 'ML'
-  | 'Чат-боты'
-  | 'Веб/Мобайл';
+export type CaseCategory = 'AI-агенты' | 'Веб/Мобайл';
 
 export interface CaseItem {
   category: CaseCategory;
@@ -364,8 +360,6 @@ export interface CaseItem {
 export const CASE_FILTERS: ('Все' | CaseCategory)[] = [
   'Все',
   'AI-агенты',
-  'ML',
-  'Чат-боты',
   'Веб/Мобайл',
 ];
 
