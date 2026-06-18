@@ -370,9 +370,9 @@ export const CASES: CaseItem[] = [
     client: 'MNKN',
     title: 'Автоматизация обработки лидов',
     description:
-      'AI-агент для сети магазинов манекенов: сбор лидов из 5 источников, автозаполнение CRM, авторассылка по незакрытым клиентам.',
+      'AI-агент для сети магазинов манекенов: собирает заявки из 5 каналов, квалифицирует и приоритизирует их через GPT-4o, заполняет CRM и сам дожимает «холодные» лиды рассылкой в WhatsApp.',
     results: ['−80% времени на ручной ввод', '0 потерянных заявок', 'Интеграция за 3 недели'],
-    tags: ['n8n', 'Google Sheets', 'WhatsApp API'],
+    tags: ['OpenAI GPT-4o', 'n8n', 'WhatsApp API', 'Google Sheets'],
     gradient: 'linear-gradient(135deg, rgba(74,64,201,0.14), rgba(15,165,108,0.06))',
   },
   {
@@ -381,20 +381,20 @@ export const CASES: CaseItem[] = [
     client: 'AIMart',
     title: 'Маркетплейс AI-услуг',
     description:
-      'Полноценный B2B-маркетплейс для заказа AI-сервисов: эскроу, чат, система заявок, роли.',
-    results: ['Django + React', 'Система эскроу-платежей', 'Real-time чат через WebSockets'],
-    tags: ['Django', 'React', 'PostgreSQL', 'Stripe'],
+      'B2B-маркетплейс AI-услуг: каталог исполнителей, безопасные сделки через эскроу, ролевой доступ и встроенный мессенджер между заказчиком и исполнителем.',
+    results: ['Безопасные сделки через эскроу', 'Чат и статусы сделок в реальном времени', 'Ролевая модель и система заявок'],
+    tags: ['Django', 'DRF', 'React', 'PostgreSQL', 'WebSockets'],
     gradient: 'linear-gradient(135deg, rgba(28,126,146,0.14), rgba(203,242,74,0.1))',
   },
   {
     category: 'Веб/Мобайл',
-    badge: 'EdTech платформа',
+    badge: 'HR Tech',
     client: 'Резюме.AI',
     title: 'SaaS для создания резюме',
     description:
-      'Русскоязычный аналог Rezi.ai с AI-анализом, адаптацией под вакансии и интеграцией HH.ru.',
-    results: ['30+ AI-функций в MVP', 'ATS-аудит по 30 критериям', '4 формата экспорта, mock interview'],
-    tags: ['React', 'FastAPI', 'OpenAI', 'Playwright'],
+      'Русскоязычный аналог Rezi.ai: AI-анализ и адаптация резюме под конкретную вакансию, ATS-скоринг и интеграция с HH.ru.',
+    results: ['AI-адаптация резюме под вакансию', 'ATS-аудит по 30 критериям', '4 формата экспорта + mock-интервью'],
+    tags: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'OpenAI', 'Playwright'],
     gradient: 'linear-gradient(135deg, rgba(15,165,108,0.14), rgba(28,126,146,0.06))',
   },
   {
@@ -404,8 +404,8 @@ export const CASES: CaseItem[] = [
     title: 'Внутренний портал барбершопов',
     description:
       'Система для сети барбершопов: чек-листы, заказы расходников, тикеты, AI-бот знаний.',
-    results: ['Роли: Администратор / Менеджер / Директор', 'Авто-напоминания по расписанию', 'RAG-чат на базе знаний'],
-    tags: ['Node.js', 'React', 'PostgreSQL', 'Prisma'],
+    results: ['Роли: Администратор / Менеджер / Директор', 'Авто-напоминания по расписанию', 'RAG-бот по внутренней базе знаний'],
+    tags: ['Node.js', 'React', 'PostgreSQL', 'Prisma', 'Qdrant', 'OpenAI GPT-4o/5 mini'],
     gradient: 'linear-gradient(135deg, rgba(178,107,42,0.14), rgba(74,64,201,0.06))',
   },
   {
@@ -416,7 +416,7 @@ export const CASES: CaseItem[] = [
     description:
       'AI-система скрининга кандидатов с HH.ru и Avito, автоматические интервью, передача HR.',
     results: ['Обработка 500+ откликов/день', 'Автоскрининг по 15 критериям', 'Интеграция с ATS'],
-    tags: ['Python', 'LangChain', 'Telegram', 'HH API'],
+    tags: ['Python', 'LangChain', 'OpenAI GPT-4o/5 mini', 'HH API', 'Avito API', 'Telegram'],
     gradient: 'linear-gradient(135deg, rgba(28,126,146,0.14), rgba(74,64,201,0.06))',
   },
 ];
