@@ -3,7 +3,6 @@ import {
   TrendingUp,
   MessageSquare,
   Globe,
-  Gamepad2,
   Zap,
   Search,
   Blocks,
@@ -118,7 +117,6 @@ export interface Service {
   color: 'violet' | 'cyan' | 'green' | 'amber';
   title: string;
   description: string;
-  tags: string[];
 }
 
 export const SERVICES: Service[] = [
@@ -128,7 +126,6 @@ export const SERVICES: Service[] = [
     title: 'AI-агенты и автоматизация',
     description:
       'Создаём агентов, которые самостоятельно выполняют задачи: обрабатывают заявки, квалифицируют лидов, заполняют CRM, ведут переписку и принимают решения.',
-    tags: ['n8n', 'LangGraph', 'GPT-4'],
   },
   {
     icon: TrendingUp,
@@ -136,7 +133,6 @@ export const SERVICES: Service[] = [
     title: 'Машинное обучение',
     description:
       'Разрабатываем ML-модели для прогнозирования, классификации, поиска аномалий и рекомендаций. Computer Vision, NLP, временные ряды.',
-    tags: ['PyTorch', 'TensorFlow', 'HuggingFace'],
   },
   {
     icon: MessageSquare,
@@ -144,7 +140,6 @@ export const SERVICES: Service[] = [
     title: 'Умные чат-боты',
     description:
       'Telegram, WhatsApp, Viber — боты с памятью, персонализацией, интеграцией в CRM и способностью вести сложные диалоги.',
-    tags: ['Telegram Bot', 'LLM', 'RAG'],
   },
   {
     icon: Globe,
@@ -152,15 +147,6 @@ export const SERVICES: Service[] = [
     title: 'Веб и мобильные приложения',
     description:
       'Разрабатываем SaaS, маркетплейсы, лендинги, iOS/Android приложения. React, Next.js, React Native, Flutter.',
-    tags: ['React', 'Next.js', 'Flutter'],
-  },
-  {
-    icon: Gamepad2,
-    color: 'violet',
-    title: 'Разработка игр',
-    description:
-      'Мобильные игры для iOS/Android на Unity и Godot. Геймдизайн, монетизация, ASO-оптимизация и публикация в сторах.',
-    tags: ['Unity', 'Godot', 'iOS/Android'],
   },
   {
     icon: Zap,
@@ -168,7 +154,6 @@ export const SERVICES: Service[] = [
     title: 'Интеграция AI в ваш бизнес',
     description:
       'Встраиваем AI-функционал в существующие продукты и процессы. API-интеграции, fine-tuning моделей, построение AI-пайплайнов.',
-    tags: ['OpenAI API', 'Claude API', 'Fine-tuning'],
   },
 ];
 
@@ -360,8 +345,7 @@ export type CaseCategory =
   | 'AI-агенты'
   | 'ML'
   | 'Чат-боты'
-  | 'Веб/Мобайл'
-  | 'Игры';
+  | 'Веб/Мобайл';
 
 export interface CaseItem {
   category: CaseCategory;
@@ -380,7 +364,6 @@ export const CASE_FILTERS: ('Все' | CaseCategory)[] = [
   'ML',
   'Чат-боты',
   'Веб/Мобайл',
-  'Игры',
 ];
 
 export const CASES: CaseItem[] = [
@@ -427,17 +410,6 @@ export const CASES: CaseItem[] = [
     results: ['Роли: Администратор / Менеджер / Директор', 'Авто-напоминания по расписанию', 'RAG-чат на базе знаний'],
     tags: ['Node.js', 'React', 'PostgreSQL', 'Prisma'],
     gradient: 'linear-gradient(135deg, rgba(178,107,42,0.14), rgba(74,64,201,0.06))',
-  },
-  {
-    category: 'Игры',
-    badge: 'Мобильная игра',
-    client: 'Over Garden',
-    title: '2D Narrative Adventure',
-    description:
-      'Атмосферная puzzle-adventure для iOS/Android на Godot. AI-генерация графики и музыки.',
-    results: ['Godot Engine 4.2', 'AI-контент: Midjourney + Suno', 'Система диалогов и инвентаря'],
-    tags: ['Godot', 'GDScript', 'AI Art', 'Mobile'],
-    gradient: 'linear-gradient(135deg, rgba(74,64,201,0.14), rgba(178,107,42,0.08))',
   },
   {
     category: 'AI-агенты',
@@ -542,11 +514,6 @@ export const TECH_STACK: TechGroup[] = [
     items: ['React', 'Next.js', 'TypeScript', 'React Native', 'Flutter', 'Tailwind'],
   },
   {
-    label: 'Игры',
-    color: 'amber',
-    items: ['Unity', 'Godot', 'GDScript', 'C#'],
-  },
-  {
     label: 'DevOps',
     color: 'violet',
     items: ['Docker', 'Kubernetes', 'AWS', 'GCP', 'GitHub Actions', 'Nginx'],
@@ -605,7 +572,7 @@ export const FOOTER = {
   columns: [
     {
       title: 'Услуги',
-      links: ['AI-агенты', 'ML-разработка', 'Чат-боты', 'Веб / Мобайл', 'Разработка игр'],
+      links: ['AI-агенты', 'ML-разработка', 'Чат-боты', 'Веб / Мобайл'],
     },
     {
       title: 'Продукты',

@@ -21,7 +21,7 @@ export const Services = () => {
           number="01 — Услуги"
           ghost="01"
           title="Что мы разрабатываем"
-          subtitle="От AI-агентов до мобильных игр — полный спектр IT-разработки"
+          subtitle="От AI-агентов до мобильных приложений — полный спектр IT-разработки"
         />
 
         <motion.div
@@ -56,19 +56,9 @@ export const Services = () => {
                 <h3 className="mb-3 text-[18px] font-semibold tracking-tight text-ink">
                   {service.title}
                 </h3>
-                <p className="mb-6 text-sm leading-relaxed text-text-secondary">
+                <p className="text-sm leading-relaxed text-text-secondary">
                   {service.description}
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex rounded-[4px] border border-[var(--border-medium)] px-2 py-1 font-mono text-2xs text-ink-soft"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </motion.div>
             );
           })}
