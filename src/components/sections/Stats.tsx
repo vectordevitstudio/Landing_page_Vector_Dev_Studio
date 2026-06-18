@@ -18,12 +18,33 @@ export const Stats = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1, ease: ANIMATIONS.easeOut }}
-              className="group relative px-6 py-9 transition-colors hover:bg-bg-card md:px-8 md:py-12"
+              className="group relative overflow-hidden px-6 py-9 md:px-8 md:py-12"
             >
-              <span className="mb-5 block font-mono text-[11px] text-ink-muted">
+              {/* Лаймовая заливка при наведении */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background:linear-gradient(160deg,rgba(203,242,74,0.30),rgba(203,242,74,0.06))]"
+              />
+              {/* Тёплое свечение из угла */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100 [background:var(--gradient-glow-lime)]"
+              />
+              {/* Лаймовая линия сверху */}
+              <span
+                aria-hidden
+                className="absolute left-0 top-0 h-[2px] w-0 bg-accent-lime transition-all duration-500 ease-out group-hover:w-full"
+              />
+              {/* Угловая регистрационная метка */}
+              <span
+                aria-hidden
+                className="plus-mark absolute right-3.5 top-3.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+
+              <span className="relative z-[1] mb-5 block font-mono text-[11px] text-ink-muted transition-colors duration-300 group-hover:text-accent-green">
                 0{i + 1}
               </span>
-              <div className="font-display text-[36px] font-semibold leading-none text-ink md:text-[46px]">
+              <div className="relative z-[1] font-display text-[36px] font-semibold leading-none text-ink transition-transform duration-300 group-hover:-translate-y-0.5 md:text-[46px]">
                 {stat.prefix}
                 {inView ? (
                   <CountUp
@@ -37,7 +58,7 @@ export const Stats = () => {
                 )}
                 <span className="text-accent-green">{stat.suffix}</span>
               </div>
-              <p className="mt-4 max-w-[180px] text-sm leading-snug text-text-secondary">
+              <p className="relative z-[1] mt-4 max-w-[180px] text-sm leading-snug text-text-secondary">
                 {stat.label}
               </p>
             </motion.div>
