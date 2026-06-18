@@ -3,13 +3,16 @@ import {
   TrendingUp,
   MessageSquare,
   Globe,
-  Gamepad2,
   Zap,
   Search,
   Blocks,
   Code2,
   Rocket,
   HeartHandshake,
+  Database,
+  GraduationCap,
+  FileText,
+  Briefcase,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -23,7 +26,7 @@ export const BRAND = {
   logoAccent: 'Dev Studio',
   // Контакты — ЗАГЛУШКИ, заменить на реальные перед публикацией
   telegram: '@vectordevstudio',
-  email: 'hello@vectordev.studio',
+  email: 'info@vectordev.ru',
   phone: '+7 XXX XXX XX XX',
 };
 
@@ -43,7 +46,7 @@ export const NAV_LINKS = [
 /* ------------------------------------------------------------------ */
 
 export const HERO = {
-  badge: '⚡ Автоматизация бизнеса с помощью AI',
+  badge: 'Автоматизация бизнеса с помощью AI',
   lineOne: 'Мы строим',
   rotatingWords: [
     'умных агентов',
@@ -57,13 +60,16 @@ export const HERO = {
   primaryCta: 'Обсудить проект',
   secondaryCta: 'Посмотреть кейсы',
   floatingCardLeft: {
-    title: 'Задача выполнена',
-    body: 'AI-агент обработал 1 847 заявок за последние 24 часа',
+    eyebrow: 'темп · mvp',
+    value: '2–8',
+    unit: 'недель',
+    caption: 'от идеи до рабочего продукта',
   },
   floatingCardRight: {
-    title: 'Экономия времени',
-    percent: 94,
-    body: 'Автоматизация рутинных задач',
+    eyebrow: 'формат · демо',
+    value: '1–2',
+    unit: 'недели',
+    caption: 'прогресс на каждом спринте',
   },
 };
 
@@ -114,7 +120,6 @@ export interface Service {
   color: 'violet' | 'cyan' | 'green' | 'amber';
   title: string;
   description: string;
-  tags: string[];
 }
 
 export const SERVICES: Service[] = [
@@ -124,7 +129,6 @@ export const SERVICES: Service[] = [
     title: 'AI-агенты и автоматизация',
     description:
       'Создаём агентов, которые самостоятельно выполняют задачи: обрабатывают заявки, квалифицируют лидов, заполняют CRM, ведут переписку и принимают решения.',
-    tags: ['n8n', 'LangGraph', 'GPT-4'],
   },
   {
     icon: TrendingUp,
@@ -132,7 +136,6 @@ export const SERVICES: Service[] = [
     title: 'Машинное обучение',
     description:
       'Разрабатываем ML-модели для прогнозирования, классификации, поиска аномалий и рекомендаций. Computer Vision, NLP, временные ряды.',
-    tags: ['PyTorch', 'TensorFlow', 'HuggingFace'],
   },
   {
     icon: MessageSquare,
@@ -140,7 +143,6 @@ export const SERVICES: Service[] = [
     title: 'Умные чат-боты',
     description:
       'Telegram, WhatsApp, Viber — боты с памятью, персонализацией, интеграцией в CRM и способностью вести сложные диалоги.',
-    tags: ['Telegram Bot', 'LLM', 'RAG'],
   },
   {
     icon: Globe,
@@ -148,15 +150,6 @@ export const SERVICES: Service[] = [
     title: 'Веб и мобильные приложения',
     description:
       'Разрабатываем SaaS, маркетплейсы, лендинги, iOS/Android приложения. React, Next.js, React Native, Flutter.',
-    tags: ['React', 'Next.js', 'Flutter'],
-  },
-  {
-    icon: Gamepad2,
-    color: 'violet',
-    title: 'Разработка игр',
-    description:
-      'Мобильные игры для iOS/Android на Unity и Godot. Геймдизайн, монетизация, ASO-оптимизация и публикация в сторах.',
-    tags: ['Unity', 'Godot', 'iOS/Android'],
   },
   {
     icon: Zap,
@@ -164,7 +157,6 @@ export const SERVICES: Service[] = [
     title: 'Интеграция AI в ваш бизнес',
     description:
       'Встраиваем AI-функционал в существующие продукты и процессы. API-интеграции, fine-tuning моделей, построение AI-пайплайнов.',
-    tags: ['OpenAI API', 'Claude API', 'Fine-tuning'],
   },
 ];
 
@@ -175,7 +167,7 @@ export const SERVICES: Service[] = [
 export interface Product {
   id: string;
   tab: string;
-  emoji: string;
+  icon: LucideIcon;
   name: string;
   badges: string[];
   pitch: string;
@@ -188,7 +180,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'knowledgecore',
     tab: 'KnowledgeCore',
-    emoji: '🧠',
+    icon: Database,
     name: 'KnowledgeCore',
     badges: ['Enterprise-ready'],
     pitch:
@@ -223,7 +215,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'learnbot',
     tab: 'LearnBot',
-    emoji: '🎓',
+    icon: GraduationCap,
     name: 'LearnBot',
     badges: ['EdTech'],
     pitch:
@@ -255,7 +247,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'meetscribe',
     tab: 'MeetScribe',
-    emoji: '📝',
+    icon: FileText,
     name: 'MeetScribe',
     badges: ['Productivity'],
     pitch:
@@ -287,7 +279,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'salesflow',
     tab: 'SalesFlow AI',
-    emoji: '💼',
+    icon: Briefcase,
     name: 'SalesFlow AI',
     badges: ['Sales Automation', 'NEW'],
     pitch:
@@ -321,7 +313,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'raize',
     tab: 'Raize.ai',
-    emoji: '🚀',
+    icon: Rocket,
     name: 'Raize.ai',
     badges: ['Platform', 'B2B/B2C'],
     pitch:
@@ -352,12 +344,7 @@ export const PRODUCTS: Product[] = [
 /* CASES                                                               */
 /* ------------------------------------------------------------------ */
 
-export type CaseCategory =
-  | 'AI-агенты'
-  | 'ML'
-  | 'Чат-боты'
-  | 'Веб/Мобайл'
-  | 'Игры';
+export type CaseCategory = 'AI-агенты' | 'Платформы';
 
 export interface CaseItem {
   category: CaseCategory;
@@ -367,73 +354,64 @@ export interface CaseItem {
   description: string;
   results: string[];
   tags: string[];
+  accent: 'violet' | 'cyan' | 'green' | 'amber';
   gradient: string;
 }
 
 export const CASE_FILTERS: ('Все' | CaseCategory)[] = [
   'Все',
   'AI-агенты',
-  'ML',
-  'Чат-боты',
-  'Веб/Мобайл',
-  'Игры',
+  'Платформы',
 ];
 
 export const CASES: CaseItem[] = [
   {
     category: 'AI-агенты',
     badge: 'AI-агент',
-    client: 'MNKN',
+    client: 'Mannex',
     title: 'Автоматизация обработки лидов',
     description:
-      'AI-агент для сети магазинов манекенов: сбор лидов из 5 источников, автозаполнение CRM, авторассылка по незакрытым клиентам.',
+      'AI-агент для сети магазинов манекенов: собирает заявки из 5 каналов, квалифицирует и приоритизирует их через GPT-4o, заполняет CRM и сам дожимает «холодные» лиды рассылкой в WhatsApp.',
     results: ['−80% времени на ручной ввод', '0 потерянных заявок', 'Интеграция за 3 недели'],
-    tags: ['n8n', 'Google Sheets', 'WhatsApp API'],
-    gradient: 'linear-gradient(135deg, #6D56FA33, #00D4FF1f)',
+    tags: ['OpenAI GPT-4o', 'n8n', 'WhatsApp API', 'Google Sheets'],
+    accent: 'violet',
+    gradient: 'linear-gradient(135deg, rgba(74,64,201,0.14), rgba(15,165,108,0.06))',
   },
   {
-    category: 'Веб/Мобайл',
+    category: 'Платформы',
     badge: 'Платформа',
     client: 'AIMart',
     title: 'Маркетплейс AI-услуг',
     description:
-      'Полноценный B2B-маркетплейс для заказа AI-сервисов: эскроу, чат, система заявок, роли.',
-    results: ['Django + React', 'Система эскроу-платежей', 'Real-time чат через WebSockets'],
-    tags: ['Django', 'React', 'PostgreSQL', 'Stripe'],
-    gradient: 'linear-gradient(135deg, #00D4FF2e, #39D98A1f)',
+      'B2B-маркетплейс AI-услуг: каталог исполнителей, безопасные сделки через эскроу, ролевой доступ и встроенный мессенджер между заказчиком и исполнителем.',
+    results: ['Безопасные сделки через эскроу', 'Чат и статусы сделок в реальном времени', 'Ролевая модель и система заявок'],
+    tags: ['Django', 'DRF', 'React', 'PostgreSQL', 'WebSockets'],
+    accent: 'cyan',
+    gradient: 'linear-gradient(135deg, rgba(28,126,146,0.14), rgba(203,242,74,0.1))',
   },
   {
-    category: 'Веб/Мобайл',
-    badge: 'EdTech платформа',
+    category: 'Платформы',
+    badge: 'Платформа',
     client: 'Резюме.AI',
     title: 'SaaS для создания резюме',
     description:
-      'Русскоязычный аналог Rezi.ai с AI-анализом, адаптацией под вакансии и интеграцией HH.ru.',
-    results: ['30+ AI-функций в MVP', 'ATS-аудит по 30 критериям', '4 формата экспорта, mock interview'],
-    tags: ['React', 'FastAPI', 'OpenAI', 'Playwright'],
-    gradient: 'linear-gradient(135deg, #39D98A2e, #00D4FF1f)',
+      'Русскоязычный аналог Rezi.ai: AI-анализ и адаптация резюме под конкретную вакансию, ATS-скоринг и интеграция с HH.ru.',
+    results: ['AI-адаптация резюме под вакансию', 'ATS-аудит по 30 критериям', '4 формата экспорта + mock-интервью'],
+    tags: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'OpenAI', 'Playwright'],
+    accent: 'green',
+    gradient: 'linear-gradient(135deg, rgba(15,165,108,0.14), rgba(28,126,146,0.06))',
   },
   {
-    category: 'Веб/Мобайл',
-    badge: 'Корпоративный портал',
-    client: 'Папа Дома',
+    category: 'Платформы',
+    badge: 'Платформа',
+    client: 'Джентльмен',
     title: 'Внутренний портал барбершопов',
     description:
       'Система для сети барбершопов: чек-листы, заказы расходников, тикеты, AI-бот знаний.',
-    results: ['Роли: Администратор / Менеджер / Директор', 'Авто-напоминания по расписанию', 'RAG-чат на базе знаний'],
-    tags: ['Node.js', 'React', 'PostgreSQL', 'Prisma'],
-    gradient: 'linear-gradient(135deg, #F5A6232e, #6D56FA1f)',
-  },
-  {
-    category: 'Игры',
-    badge: 'Мобильная игра',
-    client: 'Over Garden',
-    title: '2D Narrative Adventure',
-    description:
-      'Атмосферная puzzle-adventure для iOS/Android на Godot. AI-генерация графики и музыки.',
-    results: ['Godot Engine 4.2', 'AI-контент: Midjourney + Suno', 'Система диалогов и инвентаря'],
-    tags: ['Godot', 'GDScript', 'AI Art', 'Mobile'],
-    gradient: 'linear-gradient(135deg, #6D56FA2e, #F5A6231f)',
+    results: ['Роли: Администратор / Менеджер / Директор', 'Авто-напоминания по расписанию', 'RAG-бот по внутренней базе знаний'],
+    tags: ['Node.js', 'React', 'PostgreSQL', 'Prisma', 'Qdrant', 'OpenAI GPT-4o/5 mini'],
+    accent: 'amber',
+    gradient: 'linear-gradient(135deg, rgba(178,107,42,0.14), rgba(74,64,201,0.06))',
   },
   {
     category: 'AI-агенты',
@@ -443,8 +421,9 @@ export const CASES: CaseItem[] = [
     description:
       'AI-система скрининга кандидатов с HH.ru и Avito, автоматические интервью, передача HR.',
     results: ['Обработка 500+ откликов/день', 'Автоскрининг по 15 критериям', 'Интеграция с ATS'],
-    tags: ['Python', 'LangChain', 'Telegram', 'HH API'],
-    gradient: 'linear-gradient(135deg, #00D4FF2e, #6D56FA1f)',
+    tags: ['Python', 'LangChain', 'OpenAI GPT-4o/5 mini', 'HH API', 'Avito API', 'Telegram'],
+    accent: 'cyan',
+    gradient: 'linear-gradient(135deg, rgba(28,126,146,0.14), rgba(74,64,201,0.06))',
   },
 ];
 
@@ -510,40 +489,59 @@ export interface TechGroup {
 
 export const TECH_STACK: TechGroup[] = [
   {
-    label: 'AI / ML',
+    label: 'AI',
     color: 'violet',
     items: [
       'OpenAI',
       'Anthropic Claude',
       'LangChain',
       'LangGraph',
-      'HuggingFace',
-      'Stable Diffusion',
-      'YOLO',
+      'LangFlow',
+      'n8n',
+      'Flowise',
+      'LlamaIndex',
+      'CrewAI',
+      'Ollama',
+      'vLLM',
+    ],
+  },
+  {
+    label: 'ML',
+    color: 'amber',
+    items: [
       'PyTorch',
       'TensorFlow',
       'scikit-learn',
-      'n8n',
-      'Flowise',
+      'Hugging Face',
+      'Stable Diffusion',
+      'Whisper',
+      'YOLO',
+      'OpenCV',
     ],
   },
   {
     label: 'Backend',
     color: 'cyan',
-    items: ['Python', 'FastAPI', 'Django', 'Node.js', 'Go', 'PostgreSQL', 'Redis', 'MongoDB'],
+    items: [
+      'Python',
+      'FastAPI',
+      'Django',
+      'DRF',
+      'Celery',
+      'Node.js',
+      'PostgreSQL',
+      'Redis',
+      'Qdrant',
+      'Supabase',
+    ],
   },
   {
-    label: 'Frontend / Mobile',
+    label: 'Frontend',
     color: 'green',
     items: ['React', 'Next.js', 'TypeScript', 'React Native', 'Flutter', 'Tailwind'],
   },
   {
-    label: 'Игры',
-    color: 'amber',
-    items: ['Unity', 'Godot', 'GDScript', 'C#'],
-  },
-  {
-    label: 'DevOps',
+    label: 'Infrastructure',
     color: 'violet',
     items: ['Docker', 'Kubernetes', 'AWS', 'GCP', 'GitHub Actions', 'Nginx'],
   },
@@ -565,7 +563,7 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       'Команда разработала AI-агента для обработки заявок за 3 недели. Мы ожидали 2 месяца. Сейчас агент обрабатывает 100% входящих лидов автоматически — мы только забираем горячих клиентов.',
     name: 'Иван К.',
-    role: 'Генеральный директор, MNKN',
+    role: 'Генеральный директор, Mannex',
     initials: 'ИК',
   },
   {
@@ -601,7 +599,7 @@ export const FOOTER = {
   columns: [
     {
       title: 'Услуги',
-      links: ['AI-агенты', 'ML-разработка', 'Чат-боты', 'Веб / Мобайл', 'Разработка игр'],
+      links: ['AI-агенты', 'ML-разработка', 'Чат-боты', 'Веб / Мобайл'],
     },
     {
       title: 'Продукты',

@@ -5,32 +5,42 @@ export default {
     extend: {
       colors: {
         bg: {
-          primary: '#04040A',
-          secondary: '#080B14',
-          card: '#0D111E',
-          'card-hover': '#121828',
+          primary: '#F2F0E9',   // warm bone paper
+          secondary: '#EAE7DD',  // slightly deeper band
+          card: '#FBFAF6',       // near-white surface
+          'card-hover': '#FFFFFF',
         },
         accent: {
-          violet: '#6D56FA',
-          'violet-light': '#9B87FF',
-          cyan: '#00D4FF',
-          green: '#39D98A',
-          amber: '#F5A623',
+          // brand throughline — artistic green family
+          lime: '#CBF24A',       // electric highlight (ink text sits on it)
+          green: '#0FA56C',      // emerald foreground (links, icons)
+          // muted earthy category tints
+          violet: '#4A40C9',     // indigo
+          'violet-light': '#6A60E0',
+          cyan: '#1C7E92',       // teal
+          amber: '#B26B2A',      // ochre / clay
+        },
+        ink: {
+          DEFAULT: '#15140F',
+          soft: '#5C594E',
+          muted: '#94907F',
         },
         text: {
-          primary: '#F0F2FF',
-          secondary: '#8892B0',
-          muted: '#4A5370',
+          primary: '#15140F',
+          secondary: '#5C594E',
+          muted: '#94907F',
         },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Unbounded', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
         '2xs': '12px',
       },
       borderRadius: {
+        card: '8px',
         '4xl': '32px',
       },
       screens: {
@@ -56,6 +66,10 @@ export default {
         'bounce-down': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(8px)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
       animation: {

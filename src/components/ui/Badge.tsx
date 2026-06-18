@@ -4,10 +4,10 @@ import { cn } from '../../lib/cn';
 type BadgeColor = 'violet' | 'cyan' | 'green' | 'amber';
 
 const STYLES: Record<BadgeColor, string> = {
-  violet: 'bg-[rgba(109,86,250,0.15)] border-[rgba(109,86,250,0.4)] text-accent-violet-light',
-  cyan: 'bg-[rgba(0,212,255,0.12)] border-[rgba(0,212,255,0.3)] text-accent-cyan',
-  green: 'bg-[rgba(57,217,138,0.12)] border-[rgba(57,217,138,0.3)] text-accent-green',
-  amber: 'bg-[rgba(245,166,35,0.12)] border-[rgba(245,166,35,0.3)] text-accent-amber',
+  violet: 'border-[rgba(74,64,201,0.35)] bg-[rgba(74,64,201,0.08)] text-accent-violet',
+  cyan: 'border-[rgba(28,126,146,0.35)] bg-[rgba(28,126,146,0.08)] text-accent-cyan',
+  green: 'border-[rgba(15,165,108,0.4)] bg-[rgba(15,165,108,0.1)] text-accent-green',
+  amber: 'border-[rgba(178,107,42,0.35)] bg-[rgba(178,107,42,0.08)] text-accent-amber',
 };
 
 interface BadgeProps {
@@ -16,10 +16,10 @@ interface BadgeProps {
   className?: string;
 }
 
-export const Badge = ({ children, color = 'violet', className }: BadgeProps) => (
+export const Badge = ({ children, color = 'green', className }: BadgeProps) => (
   <span
     className={cn(
-      'inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-2xs font-medium',
+      'inline-flex items-center gap-1.5 rounded-[4px] border px-2.5 py-1 font-mono text-2xs font-medium uppercase tracking-wider',
       STYLES[color],
       className
     )}

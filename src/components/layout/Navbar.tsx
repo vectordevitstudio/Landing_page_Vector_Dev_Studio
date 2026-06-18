@@ -31,11 +31,11 @@ export const Navbar = () => {
       transition={{ duration: 0.6, ease: ANIMATIONS.easeOut }}
       className="fixed inset-x-0 top-0 z-[9999] transition-[background-color,backdrop-filter,border-color] duration-300"
       style={{
-        backgroundColor: scrolled ? 'rgba(4,4,10,0.85)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(24px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none',
+        backgroundColor: scrolled ? 'rgba(242,240,233,0.8)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.4)' : 'none',
         borderBottom: scrolled
-          ? '1px solid rgba(255,255,255,0.06)'
+          ? '1px solid rgba(21,20,15,0.1)'
           : '1px solid transparent',
       }}
     >
@@ -48,9 +48,10 @@ export const Navbar = () => {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                className="group relative text-sm text-text-secondary transition-colors hover:text-ink"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-ink transition-all duration-300 group-hover:w-full" />
               </a>
             </li>
           ))}
@@ -59,12 +60,7 @@ export const Navbar = () => {
         {/* Desktop CTA */}
         <a
           href="#cta"
-          className="group hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:scale-[1.03] hover:text-white md:inline-flex"
-          style={{
-            background:
-              'linear-gradient(var(--bg-primary),var(--bg-primary)) padding-box, linear-gradient(135deg,#6D56FA,#00D4FF) border-box',
-            border: '1px solid transparent',
-          }}
+          className="group hidden items-center gap-2 rounded-[6px] bg-ink px-5 py-2.5 text-sm font-medium text-[#F5F3EC] transition-colors duration-300 hover:bg-accent-green hover:text-ink md:inline-flex"
         >
           Обсудить проект
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -92,9 +88,9 @@ export const Navbar = () => {
             transition={{ duration: 0.3, ease: ANIMATIONS.easeOut }}
             className="md:hidden"
             style={{
-              background: 'rgba(8,11,20,0.96)',
+              background: 'rgba(242,240,233,0.97)',
               backdropFilter: 'blur(24px)',
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              borderBottom: '1px solid rgba(21,20,15,0.1)',
             }}
           >
             <motion.ul
@@ -114,7 +110,7 @@ export const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-lg px-3 py-3 text-base text-text-secondary transition-colors hover:bg-white/5 hover:text-text-primary"
+                    className="block rounded-lg px-3 py-3 text-base text-text-secondary transition-colors hover:bg-ink/5 hover:text-ink"
                   >
                     {link.label}
                   </a>
@@ -130,7 +126,7 @@ export const Navbar = () => {
                 <a
                   href="#cta"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#6D56FA,#00D4FF)] px-5 py-3 text-base font-semibold text-white"
+                  className="flex items-center justify-center gap-2 rounded-[6px] bg-ink px-5 py-3 text-base font-medium text-[#F5F3EC]"
                 >
                   Обсудить проект <ArrowRight className="h-4 w-4" />
                 </a>

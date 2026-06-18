@@ -6,42 +6,24 @@ export const Logo = () => (
     aria-label={`${BRAND.name} — на главную`}
     className="group flex items-center gap-2.5"
   >
-    <span className="relative inline-flex h-8 w-8 items-center justify-center">
+    <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-[6px] bg-ink transition-transform duration-300 group-hover:-rotate-6">
       <svg viewBox="0 0 32 32" className="h-8 w-8" aria-hidden>
-        <defs>
-          <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#6D56FA" />
-            <stop offset="100%" stopColor="#00D4FF" />
-          </linearGradient>
-        </defs>
-        <ellipse
-          cx="16"
-          cy="16"
-          rx="13"
-          ry="6"
-          fill="none"
-          stroke="url(#logoGrad)"
-          strokeWidth="1.6"
-          transform="rotate(-30 16 16)"
-        />
-        <ellipse
-          cx="16"
-          cy="16"
-          rx="13"
-          ry="6"
-          fill="none"
-          stroke="url(#logoGrad)"
-          strokeWidth="1.6"
-          transform="rotate(30 16 16)"
-          opacity="0.7"
-        />
-        <circle cx="16" cy="16" r="3.4" fill="url(#logoGrad)" />
+        {/* Фирменный знак — сетка 4×4 */}
+        <rect x="3.5" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="10" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="16.5" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="23" y="3.5" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="16.5" y="10" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="23" y="10" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="10" y="16.5" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="23" y="16.5" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="3.5" y="23" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
+        <rect x="23" y="23" width="5.5" height="5.5" rx="1" fill="#CBF24A" />
       </svg>
-      <span className="absolute inset-0 rounded-full opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-60 [background:radial-gradient(circle,rgba(109,86,250,0.7),transparent_70%)]" />
     </span>
-    <span className="text-lg font-extrabold tracking-tight">
-      <span className="text-white">{BRAND.logoFirst}</span>{' '}
-      <span className="text-gradient">{BRAND.logoAccent}</span>
+    <span className="text-[17px] font-bold leading-none tracking-tight text-ink">
+      {BRAND.logoFirst}{' '}
+      <span className="text-accent-green">{BRAND.logoAccent}</span>
     </span>
   </a>
 );
