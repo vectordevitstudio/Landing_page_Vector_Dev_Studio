@@ -1,0 +1,28 @@
+# Зависимости и артефакты — пересобираются внутри образа
+node_modules
+dist
+dist-ssr
+
+# Секреты и локальные env (ключ передаётся через build-arg)
+.env
+.env.*
+*.local
+
+# Данные certbot (сертификаты и ACME-challenge монтируются томами)
+certbot
+
+# VCS, IDE, мета
+.git
+.gitignore
+.vscode
+.claude
+
+# Документация и docker-мета (не нужны внутри образа)
+*.md
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Прочее
+tsconfig.tsbuildinfo
+npm-debug.log*

@@ -1,0 +1,42 @@
+services:
+  # ─── nginx: сборка образа + раздача статики по HTTP/HTTPS ───
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_WEB3FORMS_KEY: ${VITE_WEB3FORMS_KEY:?укажите VITE_WEB3FORMS_KEY в .env}
+    image: vector-dev-studio:latest
+    container_name: vds-web
+    restart: unless-stopped
+    environment:
+      # Подставляется в шаблон nginx (server_name + пути к сертификату)
+      - DOMAIN=${DOMAIN:?укажите DOMAIN в .env}
+      # envsubst трогает ТОЛЬКО ${DOMAIN}; переменные nginx ($host, $uri) не затрагиваются
+      - NGINX_ENVSUBST_FILTER=^DOMAIN$$
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/healthz || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    # CMD не переопределяем: штатный nginx-entrypoint обрабатывает шаблоны
+    # (envsubst) и запускает наш хук перечитывания сертификатов из
+    # /docker-entrypoint.d (см. Dockerfile + deploy/nginx/reload.sh).
+
+  # ─── certbot: автопродление сертификатов Let's Encrypt ───
+  certbot:
+    image: certbot/certbot:latest
+    container_name: vds-certbot
+    restart: unless-stopped
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    # Каждые 12 ч пробуем продлить (реально продлевается за 30 дней до истечения)
+    entrypoint: ["/bin/sh", "-c", "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 43200 & wait $${!}; done"]

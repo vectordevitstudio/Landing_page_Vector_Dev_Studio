@@ -17,6 +17,11 @@ npm run build
 npm run preview
 ```
 
+## Деплой
+
+Продакшен-развёртывание на VPS (Docker + nginx + HTTPS через Let's Encrypt)
+описано в [DEPLOY.md](DEPLOY.md).
+
 ## Структура
 
 ```

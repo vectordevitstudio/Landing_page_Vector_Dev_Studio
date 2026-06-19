@@ -1,0 +1,82 @@
+# ${DOMAIN} подставляется на старте контейнера (envsubst по шаблону).
+# Переменные nginx ($host, $uri, ...) не трогаются: NGINX_ENVSUBST_FILTER=^DOMAIN$
+
+# ─── HTTP :80 — ACME-челлендж, healthcheck и редирект на HTTPS ───
+server {
+    listen 80;
+    server_name ${DOMAIN};
+    server_tokens off;
+
+    # Локальная проверка состояния для docker healthcheck (без редиректа)
+    location = /healthz {
+        access_log off;
+        default_type text/plain;
+        return 200 "ok\n";
+    }
+
+    # Webroot для выпуска и продления сертификатов Let's Encrypt
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    # Всё остальное — на HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# ─── HTTPS :443 — раздача статики ───
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name ${DOMAIN};
+    server_tokens off;
+
+    ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
+
+    # Современный TLS (профиль Mozilla intermediate)
+    ssl_protocols             TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_ciphers               ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305;
+    ssl_session_timeout       1d;
+    ssl_session_cache         shared:SSL:10m;
+    ssl_session_tickets       off;
+
+    # OCSP stapling
+    ssl_stapling        on;
+    ssl_stapling_verify on;
+    resolver            1.1.1.1 8.8.8.8 valid=300s;
+    resolver_timeout    5s;
+
+    root  /usr/share/nginx/html;
+    index index.html;
+
+    # Заголовки безопасности (в т.ч. HSTS)
+    include /etc/nginx/snippets/security.conf;
+
+    # Сжатие
+    gzip            on;
+    gzip_vary       on;
+    gzip_comp_level 6;
+    gzip_min_length 1024;
+    gzip_proxied    any;
+    gzip_types      text/plain text/css application/json application/javascript
+                    application/xml+rss application/atom+xml image/svg+xml
+                    font/woff2 application/font-woff application/vnd.ms-fontobject;
+
+    # Хешированные бандлы Vite (index-*.js / index-*.css) — кэшируем навсегда
+    location /assets/ {
+        include /etc/nginx/snippets/security.conf;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        access_log off;
+        try_files $uri =404;
+    }
+
+    # SPA: отдаём index.html, HTML не кэшируем (чтобы новый деплой подхватывался)
+    location / {
+        include /etc/nginx/snippets/security.conf;
+        add_header Cache-Control "no-cache" always;
+        try_files $uri $uri/ /index.html;
+    }
+}

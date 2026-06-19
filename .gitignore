@@ -5,3 +5,7 @@ dist-ssr
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
+
+# Деплой: секрет окружения compose и данные certbot (сертификаты, challenge)
+.env
+/certbot/
