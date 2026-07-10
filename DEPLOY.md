@@ -166,18 +166,18 @@ docker compose down               # остановить всё
 
 ## Безопасность (что уже сделано)
 
-- Принудительный HTTPS (301 с :80) и **HSTS** (`max-age` 2 года).
-- Заголовки `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`.
+- Принудительный HTTPS: 301 с :80 на `https://${DOMAIN}` (адрес зафиксирован,
+  Host-заголовок клиента в редиректе не отражается) и **HSTS** (`max-age` 2 года).
+- **Content-Security-Policy**: разрешены только собственные ресурсы + Google Fonts
+  (стили/шрифты) и API Web3Forms (форма). `frame-ancestors 'none'` — защита от
+  clickjacking. Меняете внешние сервисы — обновите источники в
+  `deploy/nginx/security.conf`.
+- Заголовки `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`,
+  `Permissions-Policy` (камера, микрофон, геолокация запрещены).
 - Современный TLS (1.2/1.3), OCSP stapling, `server_tokens off`.
 - Долгий иммутабельный кэш для хешированных бандлов, `no-cache` для HTML.
-
-**Опционально — Content-Security-Policy.** Не включён по умолчанию, т.к. требует
-проверки (Framer Motion использует inline-стили, шрифты грузятся с Google).
-Рабочий вариант — добавить в `deploy/nginx/security.conf`:
-
-```nginx
-add_header Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'" always;
-```
+- Honeypot-поле `botcheck` в форме заявки — заявки спам-ботов Web3Forms
+  отбрасывает молча.
 
 ## Перед публикацией (не блокирует HTTPS)
 

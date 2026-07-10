@@ -19,9 +19,10 @@ server {
         root /var/www/certbot;
     }
 
-    # Всё остальное — на HTTPS
+    # Всё остальное — на HTTPS. Именно ${DOMAIN}, а не $host: Host-заголовок
+    # присылает клиент, отражать его в редиректе нельзя (host header injection).
     location / {
-        return 301 https://$host$request_uri;
+        return 301 https://${DOMAIN}$request_uri;
     }
 }
 

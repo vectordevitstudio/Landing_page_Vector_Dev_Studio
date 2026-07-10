@@ -10,9 +10,16 @@ export const CTA = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email || status === 'sending') return;
+
+    // Honeypot Web3Forms: скрытый чекбокс люди не видят, а спам-боты отмечают.
+    // Читаем из DOM (боты пишут туда напрямую, минуя React) до await —
+    // после await e.currentTarget уже недоступен.
+    const botcheck =
+      (e.currentTarget.elements.namedItem('botcheck') as HTMLInputElement | null)
+        ?.checked ?? false;
 
     setStatus('sending');
     try {
@@ -26,6 +33,7 @@ export const CTA = () => {
           access_key: import.meta.env.VITE_WEB3FORMS_KEY,
           subject: 'Новая заявка с лендинга Vector Dev Studio',
           from_name: 'Vector Dev Studio',
+          botcheck,
           email,
         }),
       });
@@ -82,6 +90,15 @@ export const CTA = () => {
                   onSubmit={handleSubmit}
                   className="mx-auto mt-10 flex max-w-md flex-col gap-2.5 sm:flex-row sm:items-center"
                 >
+                  {/* Honeypot против спам-ботов (см. handleSubmit) */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
                   <label htmlFor="cta-email" className="sr-only">
                     Ваш email
                   </label>
