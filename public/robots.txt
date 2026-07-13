@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://info.vectordev.ru/sitemap.xml
+Sitemap: https://vectordev.ru/sitemap.xml
