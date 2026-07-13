@@ -14,7 +14,6 @@ export const Process = () => {
           number="04 — Процесс"
           ghost="04"
           title="Как мы работаем"
-          subtitle="От задачи до результата — прозрачный процесс"
         />
 
         <div ref={ref} className="relative">

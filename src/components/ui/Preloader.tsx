@@ -26,11 +26,11 @@ const CELLS = [
 
 const markGrid: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.055, delayChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.025, delayChildren: 0.05 } },
 };
 const markCell: Variants = {
   hidden: { opacity: 0, scale: 0.4 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: ANIMATIONS.easeOut } },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.25, ease: ANIMATIONS.easeOut } },
 };
 
 export const Preloader = ({ onReveal, onComplete }: PreloaderProps) => {
@@ -44,7 +44,7 @@ export const Preloader = ({ onReveal, onComplete }: PreloaderProps) => {
 
   useEffect(() => {
     const start = performance.now();
-    const dur = 1100;
+    const dur = 400;
     let raf = 0;
     const tick = (t: number) => {
       const p = Math.min(1, (t - start) / dur);
@@ -66,7 +66,7 @@ export const Preloader = ({ onReveal, onComplete }: PreloaderProps) => {
       className="fixed inset-0 z-[10001] overflow-hidden bg-bg-primary"
       initial={{ y: 0 }}
       animate={exiting ? { y: '-100%' } : { y: 0 }}
-      transition={{ duration: 0.9, ease: ANIMATIONS.easeOut }}
+      transition={{ duration: 0.7, ease: ANIMATIONS.easeOut }}
       onAnimationComplete={() => {
         if (exiting) completeRef.current();
       }}
@@ -111,8 +111,8 @@ export const Preloader = ({ onReveal, onComplete }: PreloaderProps) => {
           </motion.svg>
 
           <h1 className="font-display text-[clamp(34px,7vw,82px)] font-semibold leading-[1.0] text-ink">
-            <Reveal text="Vector" play delay={0.25} />{' '}
-            <Reveal text="Dev Studio" className="text-accent-green" play delay={0.4} />
+            <Reveal text="Vector" play delay={0.1} />{' '}
+            <Reveal text="Dev Studio" className="text-accent-green" play delay={0.2} />
           </h1>
         </div>
 

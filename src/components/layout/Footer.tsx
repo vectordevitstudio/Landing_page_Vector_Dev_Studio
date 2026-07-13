@@ -66,7 +66,7 @@ export const Footer = () => (
                 {BRAND.email}
               </a>
             </li>
-            <li>Телефон: {BRAND.phone}</li>
+            {/* Телефон скрыт, пока в BRAND.phone заглушка — вернуть после замены на реальный номер */}
           </ul>
         </div>
       </div>

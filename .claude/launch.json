@@ -7,10 +7,11 @@
       "runtimeArgs": [
         "-e",
         "bash",
-        "-lc",
-        "export PATH=\"$HOME/.nvm/versions/node/v20.19.6/bin:$PATH\" && cd /home/ivan/projects/Landing_page_Vector_Dev_Studio && npm run dev -- --host 0.0.0.0 --port 5174"
+        "-c",
+        "docker rm -f vds-dev >/dev/null 2>&1; exec docker run --name vds-dev --rm -v /home/ivan/projects/Landing_page_Vector_Dev_Studio:/app -w /app -p 5174:5174 node:20-alpine sh -c 'npm install --no-audit --no-fund && npx vite --host 0.0.0.0 --port 5174'"
       ],
-      "port": 5174
+      "port": 5174,
+      "autoPort": false
     }
   ]
 }

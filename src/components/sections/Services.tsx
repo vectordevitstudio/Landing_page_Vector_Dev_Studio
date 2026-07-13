@@ -21,7 +21,6 @@ export const Services = () => {
           number="01 — Услуги"
           ghost="01"
           title="Что мы разрабатываем"
-          subtitle="От AI-агентов до мобильных приложений — полный спектр IT-разработки"
         />
 
         <motion.div

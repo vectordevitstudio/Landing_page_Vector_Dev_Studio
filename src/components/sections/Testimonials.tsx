@@ -45,7 +45,7 @@ export const Testimonials = () => {
                 className="relative"
               >
                 <p className="text-[21px] font-medium leading-[1.45] tracking-tight text-ink md:text-[27px]">
-                  «{t.quote}»
+                  «{t.quote}».
                 </p>
                 <footer className="mt-7 flex items-center gap-3">
                   <span className="inline-flex h-11 w-11 items-center justify-center rounded-[6px] bg-ink text-sm font-semibold text-[#F5F3EC]">

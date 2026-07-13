@@ -5,10 +5,9 @@ import {
   useTransform,
 } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
-import { ArrowRight, ArrowDown, Zap, Repeat, Sparkles } from 'lucide-react';
-import { NeuralBackground } from '../ui/NeuralBackground';
+import { ArrowRight, ArrowDown, Zap, Repeat } from 'lucide-react';
+import { PixelWaveBackground } from '../ui/PixelWaveBackground';
 import { GlowOrbs } from '../ui/GlowOrbs';
-import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { Reveal } from '../ui/Reveal';
 import { HERO } from '../../data/content';
@@ -49,7 +48,7 @@ export const Hero = ({ ready }: HeroProps) => {
       >
         <GlowOrbs />
       </motion.div>
-      <NeuralBackground />
+      <PixelWaveBackground />
 
       {/* Технические угловые метки */}
       <span className="plus-mark absolute left-6 top-24 z-10 hidden md:inline-block" aria-hidden />
@@ -60,14 +59,7 @@ export const Hero = ({ ready }: HeroProps) => {
           className="mx-auto max-w-5xl text-center"
           style={reduced ? undefined : { y: contentY, opacity: contentOpacity }}
         >
-          <motion.div {...appear(0.1)} className="flex justify-center">
-            <Badge className="gap-2 px-3 py-1.5">
-              <Sparkles className="h-3.5 w-3.5" />
-              {HERO.badge}
-            </Badge>
-          </motion.div>
-
-          <h1 className="mt-8 font-display text-[32px] font-medium leading-[1.06] text-ink md:text-[50px] lg:text-[58px]">
+          <h1 className="font-display text-[32px] font-medium leading-[1.06] text-ink md:text-[50px] lg:text-[58px]">
             <span className="block">
               <Reveal text={HERO.lineOne} play={ready} delay={0.15} />
             </span>

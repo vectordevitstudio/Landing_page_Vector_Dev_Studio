@@ -7,7 +7,7 @@ interface SectionHeaderProps {
   /** Метка секции, напр. "01 — Услуги" */
   number: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   ghost?: string;
 }
 
@@ -38,18 +38,24 @@ export const SectionHeader = ({ number, title, subtitle, ghost }: SectionHeaderP
         </motion.div>
 
         <div className="grid gap-x-8 gap-y-5 md:grid-cols-12 md:items-end">
-          <h2 className="font-display text-[30px] font-semibold leading-[1.03] text-ink md:col-span-8 md:text-[46px]">
+          <h2
+            className={`font-display text-[30px] font-semibold leading-[1.03] text-ink md:text-[46px] ${
+              subtitle ? 'md:col-span-8' : 'md:col-span-12'
+            }`}
+          >
             <Reveal text={title} play={inView} stagger={0.06} delay={0.05} />
           </h2>
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            custom={0.2}
-            className="text-base leading-relaxed text-text-secondary md:col-span-4 md:text-right"
-          >
-            {subtitle}
-          </motion.p>
+          {subtitle && (
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              custom={0.2}
+              className="text-base leading-relaxed text-text-secondary md:col-span-4 md:text-right"
+            >
+              {subtitle}
+            </motion.p>
+          )}
         </div>
       </div>
     </div>
