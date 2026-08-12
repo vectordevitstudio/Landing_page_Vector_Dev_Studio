@@ -102,8 +102,11 @@ export const Products = () => {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </motion.div>
+          </AnimatePresence>
 
-            {/* Правая панель — возможности */}
+          {/* Правая панель — возможности. Отдельный AnimatePresence: mode="wait"
+              рассчитан на одного ребёнка, две панели в одном блоке дают варнинг. */}
+          <AnimatePresence mode="wait">
             <motion.div
               key={`${product.id}-detail`}
               initial={{ opacity: 0, x: 16 }}

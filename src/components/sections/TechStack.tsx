@@ -21,7 +21,6 @@ export const TechStack = () => {
           number="05 — Технологии"
           ghost="05"
           title="Технологии, на которых строим"
-          subtitle="Современный стек для AI, ML, бэкенда, фронтенда и инфраструктуры"
         />
 
         <div ref={ref} className="space-y-10">

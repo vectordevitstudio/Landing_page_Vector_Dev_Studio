@@ -26,7 +26,7 @@ export const BRAND = {
   logoFirst: 'Vector',
   logoAccent: 'Dev Studio',
   // Контакты — ЗАГЛУШКИ, заменить на реальные перед публикацией
-  telegram: '@vectordevstudio',
+  telegram: '@vectordevagents',
   email: 'info@vectordev.ru',
   phone: '+7 XXX XXX XX XX',
 };
@@ -89,7 +89,7 @@ export interface Stat {
 export const STATS: Stat[] = [
   { value: 2, suffix: '+ лет', label: 'Работаем на рынке' },
   { value: 20, suffix: '+', label: 'Реализованных AI-проектов' },
-  { value: 5, suffix: '', label: 'Собственных продуктов в работе' },
+  { value: 3, suffix: '', label: 'Собственных продуктов в работе' },
   { value: 24, suffix: ' часа', label: 'На оценку вашего проекта' },
 ];
 
@@ -402,18 +402,6 @@ export const CASES: CaseItem[] = [
   {
     category: 'Платформы',
     badge: 'Платформа',
-    client: 'CoverWise',
-    title: 'SaaS для создания резюме',
-    description:
-      'Русскоязычный аналог Rezi.ai: AI-анализ и адаптация резюме под конкретную вакансию, ATS-скоринг и интеграция с HH.ru.',
-    results: ['AI-адаптация резюме под вакансию', 'ATS-аудит по 40+ критериям', '4 формата экспорта + mock-интервью'],
-    tags: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'OpenAI', 'Playwright'],
-    accent: 'green',
-    gradient: 'linear-gradient(135deg, rgba(15,165,108,0.14), rgba(28,126,146,0.06))',
-  },
-  {
-    category: 'Платформы',
-    badge: 'Платформа',
     client: 'Джентльмен',
     title: 'Внутренний портал барбершопов',
     description:
@@ -580,7 +568,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      'У нас больше 50 000 документов, и раньше поиск нужной спецификации мог занять полдня. Теперь сотрудники просто задают вопрос базе знаний и получают ответ со ссылкой на источник. Вложения вернулись за первый же месяц',
+      'У нас больше 1000 нормативных документов, и раньше поиск нужной информации мог занять полдня. Теперь сотрудники просто задают вопрос базе знаний и получают ответ со ссылкой на источник',
     name: 'Мария С.',
     role: 'CTO, производственная компания',
     initials: 'МС',
@@ -591,13 +579,6 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Дмитрий В.',
     role: 'Head of HR, ритейл',
     initials: 'ДВ',
-  },
-  {
-    quote:
-      'Сделали приложение под iOS и Android, довели до публикации в сторах и не исчезли после релиза — до сих пор помогают с обновлениями. Для небольшого стартапа такая поддержка на вес золота',
-    name: 'Анна П.',
-    role: 'Основатель EdTech-стартапа',
-    initials: 'АП',
   },
 ];
 
