@@ -68,8 +68,7 @@ export const CTA = () => {
           <span className="plus-mark absolute bottom-4 right-4" aria-hidden />
 
           <div className="relative mx-auto max-w-2xl">
-            <span className="eyebrow text-ink-soft">[ Старт проекта ]</span>
-            <h2 className="mt-5 font-display text-[28px] font-semibold leading-[1.08] text-ink md:text-[46px]">
+            <h2 className="font-display text-[28px] font-semibold leading-[1.08] text-ink md:text-[46px]">
               Готовы автоматизировать{' '}
               <span className="ink-highlight">ваш бизнес?</span>
             </h2>
@@ -145,10 +144,6 @@ export const CTA = () => {
                 </div>
               </>
             )}
-
-            <p className="mt-6 font-mono text-2xs uppercase tracking-wider text-ink-muted">
-              Бесплатная консультация · Ответим в течение 24 часов
-            </p>
           </div>
         </motion.div>
       </div>

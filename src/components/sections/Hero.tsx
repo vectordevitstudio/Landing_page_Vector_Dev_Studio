@@ -168,17 +168,6 @@ export const Hero = ({ ready }: HeroProps) => {
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Scroll indicator — центрирование снаружи, анимация внутри */}
-      <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 md:block">
-        <motion.div
-          {...appear(1.4)}
-          className="flex flex-col items-center gap-2"
-        >
-          <ArrowDown className="h-4 w-4 animate-bounce-down text-ink-muted" />
-          <span className="eyebrow text-ink-muted">scroll</span>
-        </motion.div>
-      </div>
     </section>
   );
 };
