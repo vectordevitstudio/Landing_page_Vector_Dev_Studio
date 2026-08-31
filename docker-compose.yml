@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        VITE_WEB3FORMS_KEY: ${VITE_WEB3FORMS_KEY:?укажите VITE_WEB3FORMS_KEY в .env}
     image: vector-dev-studio:latest
     container_name: vds-web
     restart: unless-stopped

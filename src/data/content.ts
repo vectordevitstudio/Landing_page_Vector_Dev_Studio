@@ -25,9 +25,10 @@ export const BRAND = {
   name: 'Vector Dev Studio',
   logoFirst: 'Vector',
   logoAccent: 'Dev Studio',
-  // Контакты — ЗАГЛУШКИ, заменить на реальные перед публикацией
+  // Боевые контакты — единственный канал связи на сайте (секция CTA и футер)
   telegram: '@vectordevagents',
   email: 'info@vectordev.ru',
+  // Заглушка: телефон не опубликован, поэтому в футере скрыт
   phone: '+7 XXX XXX XX XX',
 };
 

@@ -9,8 +9,8 @@ Let's Encrypt. Всё запускается через **Docker Compose** — �
 | `vds-web` | собирается из `Dockerfile` (node → nginx) | сборка статики + раздача по HTTP/HTTPS |
 | `vds-certbot` | `certbot/certbot` | выпуск и автопродление сертификата |
 
-Собственный backend не нужен: форма заявки отправляется напрямую в сторонний
-сервис [Web3Forms](https://web3forms.com).
+Собственный backend не нужен: сайт полностью статический, заявки приходят
+напрямую в Telegram и на почту (контакты в `src/data/content.ts`).
 
 ---
 
@@ -20,7 +20,6 @@ Let's Encrypt. Всё запускается через **Docker Compose** — �
 - Домен **info.vectordev.ru** с **A-записью**, указывающей на IP сервера
   (для IPv6 — ещё и `AAAA`). Проверка: `dig +short info.vectordev.ru`.
 - Открытые порты **80** и **443**.
-- Access key для Web3Forms (форма заявки).
 
 > Let's Encrypt выдаёт сертификат только на реальный домен, к которому он может
 > достучаться по порту 80. На «голый» IP сертификат не выпустить.
@@ -67,14 +66,12 @@ nano .env
 Заполните:
 
 ```ini
-VITE_WEB3FORMS_KEY=ваш-ключ-web3forms   # вшивается в бандл при сборке
 DOMAIN=info.vectordev.ru                # server_name + домен сертификата
 CERTBOT_EMAIL=admin@vectordev.ru        # уведомления Let's Encrypt
 STAGING=0                               # 1 — тестовый прогон без лимитов
 ```
 
-> `.env` в git не коммитится. Ключ Web3Forms всё равно публичный (он попадает
-> в клиентский JS) — это штатная схема Web3Forms, не секрет в строгом смысле.
+> `.env` в git не коммитится (см. `.gitignore`).
 
 ## 6. Первый выпуск сертификата
 
@@ -112,7 +109,7 @@ curl -I https://info.vectordev.ru    # ожидаем 200 + заголовки �
 ```
 
 Откройте `https://info.vectordev.ru` в браузере — должен быть валидный замок,
-редирект с http, и рабочая форма заявки.
+редирект с http, и рабочие ссылки на Telegram и почту в секции контактов.
 
 ---
 
@@ -169,22 +166,21 @@ docker compose down               # остановить всё
 - Принудительный HTTPS: 301 с :80 на `https://${DOMAIN}` (адрес зафиксирован,
   Host-заголовок клиента в редиректе не отражается) и **HSTS** (`max-age` 2 года).
 - **Content-Security-Policy**: разрешены только собственные ресурсы + Google Fonts
-  (стили/шрифты) и API Web3Forms (форма). `frame-ancestors 'none'` — защита от
-  clickjacking. Меняете внешние сервисы — обновите источники в
-  `deploy/nginx/security.conf`.
+  (стили/шрифты). `frame-ancestors 'none'` — защита от clickjacking. Подключаете
+  внешние сервисы — добавьте источники в `deploy/nginx/security.conf`.
 - Заголовки `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`,
   `Permissions-Policy` (камера, микрофон, геолокация запрещены).
 - Современный TLS (1.2/1.3), OCSP stapling, `server_tokens off`.
 - Долгий иммутабельный кэш для хешированных бандлов, `no-cache` для HTML.
-- Honeypot-поле `botcheck` в форме заявки — заявки спам-ботов Web3Forms
-  отбрасывает молча.
+- Форм и пользовательского ввода на сайте нет — нет и поверхности для спама
+  и утечки введённых данных.
 
 ## Перед публикацией (не блокирует HTTPS)
 
 - В `index.html` указан `og:image` → `/og-image.png`, но файла нет. Положите
   картинку (1200×630) в `public/og-image.png`, иначе превью в соцсетях будет
   битым.
-- Контакты в `src/data/content.ts` (`BRAND`) и `CERTBOT_EMAIL` — заглушки,
-  замените на реальные.
+- Telegram и email в `src/data/content.ts` (`BRAND`) — боевые. Заглушка осталась
+  только в `BRAND.phone` (в футере такой телефон скрыт) и в `CERTBOT_EMAIL`.
 - `public/robots.txt` и `public/sitemap.xml` содержат домен `info.vectordev.ru` —
   поправьте, если домен другой.

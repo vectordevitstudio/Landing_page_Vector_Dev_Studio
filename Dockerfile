@@ -4,11 +4,6 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Ключ Web3Forms вшивается в JS-бандл на этапе сборки (Vite инлайнит VITE_*).
-# Передаётся через build-arg из docker compose (.env). Ключ публичный по дизайну.
-ARG VITE_WEB3FORMS_KEY
-ENV VITE_WEB3FORMS_KEY=${VITE_WEB3FORMS_KEY}
-
 # Сначала манифесты — слой npm ci кэшируется, пока они не меняются
 COPY package.json package-lock.json ./
 RUN npm ci

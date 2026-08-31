@@ -1,48 +1,33 @@
-import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Send, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Send, Mail, ArrowUpRight } from 'lucide-react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { BRAND } from '../../data/content';
 import { ANIMATIONS } from '../../lib/animations';
 
+const TELEGRAM_URL = `https://t.me/${BRAND.telegram.replace('@', '')}`;
+const MAILTO_URL = `mailto:${BRAND.email}?subject=${encodeURIComponent(
+  'Заявка с сайта Vector Dev Studio',
+)}`;
+
+const CONTACTS = [
+  {
+    icon: Send,
+    label: 'Напишите нам в Telegram',
+    value: BRAND.telegram,
+    href: TELEGRAM_URL,
+    hint: 'Отвечаем в рабочее время, обычно за пару часов',
+  },
+  {
+    icon: Mail,
+    label: 'Напишите нам на почту',
+    value: BRAND.email,
+    href: MAILTO_URL,
+    hint: 'Ответим в течение 24 часов',
+  },
+];
+
 export const CTA = () => {
   const { ref, inView } = useScrollAnimation(0.3);
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!email || status === 'sending') return;
-
-    // Honeypot Web3Forms: скрытый чекбокс люди не видят, а спам-боты отмечают.
-    // Читаем из DOM (боты пишут туда напрямую, минуя React) до await —
-    // после await e.currentTarget уже недоступен.
-    const botcheck =
-      (e.currentTarget.elements.namedItem('botcheck') as HTMLInputElement | null)
-        ?.checked ?? false;
-
-    setStatus('sending');
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
-          subject: 'Новая заявка с лендинга Vector Dev Studio',
-          from_name: 'Vector Dev Studio',
-          botcheck,
-          email,
-        }),
-      });
-      const data = await res.json();
-      setStatus(data.success ? 'success' : 'error');
-    } catch {
-      setStatus('error');
-    }
-  };
 
   return (
     <section id="cta" className="relative overflow-hidden py-24 md:py-32">
@@ -76,74 +61,28 @@ export const CTA = () => {
               Расскажите о задаче — мы предложим решение и оценим проект за 24 часа.
             </p>
 
-            {status === 'success' ? (
-              <div className="mx-auto mt-10 inline-flex items-center gap-3 rounded-[6px] border border-[var(--border-accent)] bg-[rgba(15,165,108,0.1)] px-6 py-4 text-accent-green">
-                <CheckCircle2 className="h-5 w-5" />
-                <span className="font-medium">
-                  Заявка отправлена! Ответим в течение 24 часов.
-                </span>
-              </div>
-            ) : (
-              <>
-                <form
-                  onSubmit={handleSubmit}
-                  className="mx-auto mt-10 flex max-w-md flex-col gap-2.5 sm:flex-row sm:items-center"
+            <div className="mt-10 grid gap-3 sm:grid-cols-2">
+              {CONTACTS.map(({ icon: Icon, label, value, href, hint }) => (
+                <motion.a
+                  key={href}
+                  href={href}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.99 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+                  className="group flex flex-col items-start gap-3 rounded-[6px] border border-[var(--border-medium)] bg-bg-primary p-5 text-left transition-colors hover:border-accent-green"
                 >
-                  {/* Honeypot против спам-ботов (см. handleSubmit) */}
-                  <input
-                    type="checkbox"
-                    name="botcheck"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    aria-hidden="true"
-                    className="hidden"
-                  />
-                  <label htmlFor="cta-email" className="sr-only">
-                    Ваш email
-                  </label>
-                  <input
-                    id="cta-email"
-                    type="email"
-                    required
-                    disabled={status === 'sending'}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Ваш email"
-                    className="flex-1 rounded-[6px] border border-[var(--border-medium)] bg-bg-primary px-5 py-3.5 text-ink outline-none placeholder:text-ink-muted focus-visible:border-accent-green disabled:opacity-60"
-                  />
-                  <button
-                    type="submit"
-                    disabled={status === 'sending'}
-                    className="group inline-flex items-center justify-center gap-2 rounded-[6px] bg-ink px-7 py-3.5 font-medium text-[#F5F3EC] transition-colors hover:bg-accent-green hover:text-ink disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-ink disabled:hover:text-[#F5F3EC]"
-                  >
-                    {status === 'sending' ? 'Отправляем…' : 'Получить консультацию'}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </button>
-                </form>
-
-                {status === 'error' && (
-                  <p className="mt-4 text-sm text-[#cc4b37]">
-                    Не удалось отправить заявку. Попробуйте ещё раз или{' '}
-                    <a
-                      href={`https://t.me/${BRAND.telegram.replace('@', '')}`}
-                      className="underline underline-offset-2 hover:opacity-80"
-                    >
-                      напишите в Telegram
-                    </a>
-                    .
-                  </p>
-                )}
-
-                <div className="mt-6 flex items-center justify-center">
-                  <a
-                    href={`https://t.me/${BRAND.telegram.replace('@', '')}`}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-accent-green transition-opacity hover:opacity-80"
-                  >
-                    <Send className="h-4 w-4" /> Или написать в Telegram
-                  </a>
-                </div>
-              </>
-            )}
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-[6px] bg-ink text-[#F5F3EC] transition-colors group-hover:bg-accent-green group-hover:text-ink">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span className="font-medium text-ink">{label}</span>
+                  <span className="inline-flex items-center gap-1 font-mono text-sm text-accent-green">
+                    {value}
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                  <span className="text-sm text-text-secondary">{hint}</span>
+                </motion.a>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
